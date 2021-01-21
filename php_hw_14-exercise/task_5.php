@@ -21,8 +21,8 @@ function biggest_element($input) {
         }
     }
 
-    return $result;
+    return $result['max'];
 }
 
-//echo biggest_element($arr);
-var_dump(biggest_element($arr));
+echo biggest_element($arr);
+//var_dump(biggest_element($arr));

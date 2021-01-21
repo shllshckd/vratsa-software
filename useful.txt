@@ -1,0 +1,94 @@
+the super globals
+-----------------
+$GLOBALS
+$_SERVER
+$_REQUEST
+$_POST
+$_GET
+$_FILES
+$_ENV
+$_COOKIE
+$_SESSION
+
+sessions
+-----------
+session_start();
+session_destroy();
+header ('Location: index.php')
+session_id();
+
+functions
+-----------
+gmp_gcd // Calculate GCD - greatest common divisor
+strlen($str) // length of string
+isset($var) // if exists and not null
+unset($var) // destroys the value
+explode($separator, $string); // split an string by a string and make an array
+implode($separator, $array) // join array elements with a string
+strrev($string) // string reversal
+var_dump($value) // dump info about a variable
+sqrt($number) // get square root
+round($floating_number, precision);
+count($arr) // count of items in array
+empty() // checks if a variable is empty
+array_slice() // [$arr, $offset, $length] // examples: [$v, 0, 5] ; [$v, -5] // extract a slice
+is_string() // is string
+is_numeric() // is numeric
+abs() // absolute value
+rand($min, $max) // random element between boundaries
+rand() // same as ^, no bounds
+array_push($arr, $value) // add value to arr
+array_pop($array) // pops last element
+array_sum($array) // calculate sum of all values in arr
+array_count_values // counts all the values of an array
+
+str_split($string, length=1) // convert string into an array
+is_array($value) // returns bool
+in_array($needle, $haystack, $strict = false) // loose comparison
+array_unique($array) // remove duplicates
+array_search($needle, $haystack) // search for needle, return its key if successful
+array_reverse($arr, $preserve_keys = false) // reverse an array
+array_map($callback, $array) // apply callback to the elements of given arrays
+array_diff($array, $array) // computes differences of arrays
+count($array-countable) // all elements in an array or something in an object
+max($mixed-values OR $array) // return the highest value
+min($mixed-values OR $array) // return the lowest value
+array_rand($array, $num = 1) // 1 or more random keys out of an array
+array_count($array) // return number of occurrences as value and key is the original value
+sort($array, $flag = sort_regular) // sort array
+asort($array) // sort array, maintain index association
+rsort()
+arsort($array) // sort array in reverse order, maintain index association
+date_default_timezone_set('America/Los_Angeles')
+date_default_timezone_get() // get the default timezone
+date()
+time()
+print_r // print in human readable format
+---------------
+exponentiation operator - **
+
+==
+===
+!=
+!==
+<> // not equal
+
+short explanations
+---------------
+$values = array_count_values($array);
+$popular = array_slice(array_keys($values), 0, 5, true);
+array_slice() // gives us the first five elements of the results
+array_count_values() // gets the count of the number of times each item appears in an array
+array_keys() // gets the actual value which is the array key in the results from array_count_values()
+
+vowels
+-----------
+a e i o u y
+
+consonants
+-----------
+b c d f g h
+j k l m n p
+q r s t v w
+x y z
+

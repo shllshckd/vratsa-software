@@ -1,6 +1,6 @@
 <?php
 
-if ( isset($_POST['num']) ) {
+if (isset($_POST['num'])) {
     $number = $_POST['num'];
 
     for ($i = 0; $i < $number; $i++) {

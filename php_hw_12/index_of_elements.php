@@ -42,13 +42,13 @@ function indexOfElement($array)
     }
 }
 
-//$arr = [2, 11, 2, 3, 0, 2]; // 1
+$arr = [2, 11, 2, 3, 0, 2]; // 1
 //$arr = [0, 4, 7, 0, 0, 0]; // 2
 //$arr = [4, 15, 27, 33, 1]; // 3
 //$arr = [1, 1, 1, 1]; // no such element
 
-//$arr = [27, 22, 11, 4];
-$arr = [25, 3, 2, 22, 28];
+//$arr = [27, 22, 11, 4]; // 0
+//$arr = [25, 3, 2, 22, 28]; // 4
 
 $result = indexOfElement($arr);
 echo $result;

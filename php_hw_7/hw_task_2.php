@@ -22,9 +22,9 @@
     // set initially to high value, won't work otherwise
     $lowest = 9999;
     foreach ($array as $key => $value) {
-        if (0 == $value) {
-            continue;
-        }
+//        if (0 == $value) {
+//            continue;
+//        }
 
         if ($lowest > $value) {
             $lowest = $value;

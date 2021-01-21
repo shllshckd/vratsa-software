@@ -1,7 +1,7 @@
 <?php
 
-function calc_fact ($number) {
-    if($number <= 1) {
+function calc_fact($number) {
+    if ($number <= 1) {
         return 1;
     }
     else {

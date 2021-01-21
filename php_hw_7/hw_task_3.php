@@ -24,7 +24,7 @@
         $array[$i] = rand(0, 9999);
     }
 
-    // 2. if previous is less than current and later is greater than current store them into ann array
+    // 2. if previous is less than current and later is greater than current store them into an array
 
     for($j = 0; $j < $size - 2; $j++) {
         if ($array[$j] < $array[$j + 1] && $array[$j + 1] < $array[$j + 2] &&

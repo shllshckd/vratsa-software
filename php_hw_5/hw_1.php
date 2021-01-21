@@ -23,8 +23,7 @@
     //    echo "hi, " . $_POST['username'];
     //    echo "<br>";
 
-    if (!isset($_POST['username'])) {
-    ?>
+    if (!isset($_POST['username'])) { ?>
 
     <form action="" method="post" enctype="multipart/form-data">
         <label for="username">Username</label><br/>
@@ -38,10 +37,10 @@
     </form>
 
     <?php
-    } else {
-        $username = $_POST['username'];
-        echo "Hi, " . $username;
-    }
+        } else {
+            $username = $_POST['username'];
+            echo "Hi, " . $username;
+        }
     ?>
 </body>
 </html>

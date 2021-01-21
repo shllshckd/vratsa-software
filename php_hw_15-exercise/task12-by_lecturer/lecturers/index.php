@@ -7,7 +7,7 @@
 // информацията, постъпваща от потребителя.
 ?>
 <?php
-require_once('includes/header.php');
+    require_once('includes/header.php');
 ?>
 
     <form method="post" action="script.php">
@@ -20,7 +20,7 @@ require_once('includes/header.php');
             <?php for( $j = 0; $j <= 3; $j++ ) { ?>
                 <?php $data_num = 1; ?>
                 <p>
-                    <label>Subgect and grade #<?= $data_num++ ?></label>
+                    <label>Subject and grade #<?= $data_num++ ?></label>
                     <?= print_input('text', "students[$i][subject][$j]", "Subject ... ")?>
                     <?= print_input('text', "students[$i][grade][$j]", "Grade ... ")?>
                 </p>
@@ -29,9 +29,8 @@ require_once('includes/header.php');
         <?php } ?>
 
         <?= print_input('submit', "submit" )?>
-
     </form>
 
 <?php
-require_once('includes/footer.php');
+    require_once('includes/footer.php');
 ?>

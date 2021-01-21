@@ -1,7 +1,3 @@
-
-<!-- 2, 3, 4, 10, 15, 16, 99, 22
--->
-
 <?php
 
 function print_table($post_input) {
@@ -17,7 +13,8 @@ function print_table($post_input) {
 
                 if (!is_numeric($arr[$i])) {
                     echo '<td>cannot sum</td>';
-                    return;
+                    continue;
+//                    return;
                 }
 
                 for ($j = 0; $j < $len; $j++){
@@ -29,6 +26,9 @@ function print_table($post_input) {
         }
     echo "<table>";
 }
+
+
+// 2, 3, 4, 10, 15, 16, 99, 22
 
 
 //$post_input = "1 25 56 9656 258 7854 21";

@@ -1,8 +1,6 @@
 <?php
 
-$a = 10;
-$b = 63;
-$c = 15;
+
 
 function get_triangle_type($a, $b, $c) {
     if (($a + $c < $b) || ($a + $b < $c) || ($b + $c < $a)) {
@@ -18,4 +16,8 @@ function get_triangle_type($a, $b, $c) {
     }
 }
 
-get_triangle_type( $a, $b, $c);
+$a = 10;
+$b = 63;
+$c = 15;
+
+get_triangle_type($a, $b, $c);

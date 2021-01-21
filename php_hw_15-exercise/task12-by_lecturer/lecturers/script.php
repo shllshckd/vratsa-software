@@ -10,7 +10,8 @@
 require_once('includes/header.php');
 
 ?>
-    <pre>
+
+<pre>
 	<?php var_dump( $_POST['students']) ?>
 </pre>
 
@@ -20,8 +21,6 @@ require_once('includes/header.php');
     <?php } ?>
 <?php } ?>
 
-
-
 <?php
-require_once('includes/footer.php');
+    require_once('includes/footer.php');
 ?>

@@ -20,7 +20,7 @@
 
 $number = 3;
 
-if ((isset($_POST['number']) == true) && ($_POST['number'] == $number)){
+if (isset($_POST['number']) && ($_POST['number'] == $number)){
     echo "<p>Correct guess.</p>";
 } else {
     echo "<p>Incorrect guess.</p>";

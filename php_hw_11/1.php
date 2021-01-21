@@ -15,12 +15,12 @@ $b = 42;
  */
 function num($a, $b, $tag = 'p') {
     if ($a > $b) {
-        for ($num = $a; $num >= $b; $num--) {
-            echo "<$tag>" . $num . "</$tag>";
+        for ($i = $a; $i >= $b; $i--) {
+            echo "<$tag>" . $i . "</$tag>";
         }
     } elseif ($a < $b) {
-        for ($num = $a; $num <= $b; $num++) {
-            echo "<$tag>" . $num . "</$tag>";
+        for ($i = $a; $i <= $b; $i++) {
+            echo "<$tag>" . $i . "</$tag>";
         }
     } else {
         echo "<$tag>" . $a . "</$tag>";

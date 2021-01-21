@@ -17,9 +17,11 @@ function exercise_5($to_be_found, $arr, $times_found) {
             $times_found += 1;
         }
     }
+
     if ($times_found == 0) {
         $times_found = 'not in array';
     }
+
     return $times_found;
 }
 
