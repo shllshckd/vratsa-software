@@ -34,12 +34,16 @@ $people = [
         'height' => 173,
         'weight' => 73,
     ],
-    [
-        'name' => 'Ana',
-        'height' => 167,
-        'weight' => 47,
-    ],
+//    [
+//        'name' => 'Ana',
+//        'height' => 167,
+//        'weight' => 47,
+//    ],
 ];
+
+//Average weight of all the people is: 80
+//Average height of all the people is: 174.16666666667
+//Average body mass index of all the people is: 0.0026373022595637
 
 $average_weight_all_people = 0;
 $average_height_all_people = 0;
@@ -52,7 +56,7 @@ foreach ($people as $person => $value) {
 
 $average_weight_all_people /= count($people);
 
-print "Average weight of all the people is: $average_weight_all_people <br/>"; // 86.6
+print "Average weight of all the people is: $average_weight_all_people<br/>"; // 86.6
 
 // height
 
@@ -62,10 +66,10 @@ foreach ($people as $person => $value) {
 
 $average_height_all_people /= count($people);
 
-print "Average height of all the people is: $average_height_all_people <br/>"; // 175.6
+print "Average height of all the people is: $average_height_all_people<br/>"; // 175.6
 
 // bmi
 
 $body_mass_index = $average_weight_all_people / ($average_height_all_people ** 2);
 
-print "Average body mass index of all the people is: $body_mass_index <br/>"; // ?
+print "Average body mass index of all the people is: $body_mass_index<br/>"; // ?
