@@ -29,7 +29,7 @@ var_dump($value) // dump info about a variable
 sqrt($number) // get square root
 round($floating_number, precision);
 count($arr) // count of items in array
-empty() // checks if a variable is empty
+empty() // checks if a variable or array is empty
 array_slice() // [$arr, $offset, $length] // examples: [$v, 0, 5] ; [$v, -5] // extract a slice
 is_string() // is string
 is_numeric() // is numeric
@@ -91,6 +91,18 @@ $popular = array_slice(array_keys($values), 0, 5, true);
 array_slice() // gives us the first five elements of the results
 array_count_values() // gets the count of the number of times each item appears in an array
 
+
+$values = array_count_values($array);
+arsort($values);
+$popular = array_slice(array_keys($values), 0, 5, true);
+
+explanation
+------------
+array_count_values() gets the count of the number of times each item appears in an array
+arsort() sorts the array by number of occurrences in reverse order
+array_keys() gets the actual value which is the array key in the results from array_count_values()
+array_slice() gives us the first five elements of the results
+
 vowels
 -----------
 a e i o u y
@@ -101,4 +113,3 @@ b c d f g h
 j k l m n p
 q r s t v w
 x y z
-
