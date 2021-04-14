@@ -1,0 +1,32 @@
+// files
+in form - enctype="multipart/form-data"
+$_FILES[] - for files
+["name"] - filename
+["type"] - filetype
+["tmp_name"] - temporary name used 
+["error"] - index of error occured during upload
+["size"] - file size in bytes
+
+// input type="file", it's "name"
+// folder
+
+// file upload directives in php.ini
+file_uploads
+upload_max_filesize
+upload_tmp_dir
+post_max_size
+max_input_time
+
+Only allow specific file types
+-Verify file types
+-Remove possible embedded threats
+-Set a maximum name length and maximum file size
+-Randomize uploaded file names
+-Store uploaded files outside web root folder
+-Use simple error messages /that do not expose project`s file structure/
+
+// manual
+https://www.php.net/manual/en/features.file-upload.post-method.php
+https://www.php.net/manual/en/features.file-upload.errors.php
+https://www.saotn.org/validate-mime-types-with-php-fileinfo/
+https://www.opswat.com/blog/file-upload-protection-best-practices

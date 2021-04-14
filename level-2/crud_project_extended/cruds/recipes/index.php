@@ -5,7 +5,6 @@
  */
 include '../../includes/header.php';
 
-//1
 $read_query = "SELECT a.recipe_id, a.recipe_name, a.prep_description, a.prep_time, b.recipe_category_name, a.date_created 
                FROM recipes.recipes a LEFT JOIN recipes.recipe_categories b on a.recipe_category_id = b.recipe_category_id 
                WHERE a.date_deleted IS NULL";
@@ -20,14 +19,16 @@ if (mysqli_num_rows($result) > 0) { ?>
         <a href="recycle_bin.php" class="btn btn-outline-dark">Recycle Bin</a></h1>
     <table style="margin-left: 50px" class="table table-striped">
         <tr>
-            <td>#</td>
-            <td>Recipe Name</td>
-            <td>Preparation</td>
-            <td>Time</td>
-            <td>Category</td>
-            <td>Created At</td>
-            <td>Update</td>
-            <td>Soft Delete</td>
+            <form action="index.php" method="get" accept-charset="utf-8">
+                <td>#</td>
+                <td>Recipe Name</td>
+                <td>Description</td>
+                <td>Time</td>
+                <td>Category</td>
+                <td>Created At</td>
+                <td>Update</td>
+                <td>Soft Delete</td>
+            </form>
         </tr>
 		<?php
 		$num = 1;
@@ -52,3 +53,30 @@ if (mysqli_num_rows($result) > 0) { ?>
 <?php } else {
 	die('Query has failed. ' . mysqli_error($connection));
 }
+
+//
+// <p>
+//    <?php
+//        $disabled_or_not = ($page == 1) ? 'disabled' : '';
+//        if ($page > 1) { ?>
+<!--            <a class="btn btn-sm btm-primary --><?php //echo $disabled_or_not; ?><!--"*/-->
+<!--               href="index.php?page=--><?php //echo $page - 1; ?><!--">Previous</a>*/-->
+<!--        --><?php //} else { ?>
+<!--            <a class="btn btn-sm btm-primary --><?php //echo $disabled_or_not; ?><!--"*/-->
+<!--               href="index.php?page=1">Previous</a>-->
+<!--        --><?php //}
+//    echo "<span> | </span>";
+//        for ($i = 1; $i <= $max_pages; $i++) {
+//            echo "<a class=\"btn btn-sm btn-primary\" href='index.php?page=$i'>$i</a>";
+//        }
+//
+//        $disabled_or_not_for_next = ($page >= $max_pages) ? 'disabled' : '';
+//        if ($page < $max_pages) { ?>
+<!--            <a class="btn btn-sm btm-primary --><?php //echo $disabled_or_not_for_next; ?><!--"*/-->
+<!--               href="index.php?page=--><?php //echo $page + 1; ?><!--">Next</a><span> | </span>*/-->
+<!--        --><?php //} else { ?>
+<!--            <a class="btn btn-sm btm-primary --><?php //echo $disabled_or_not_for_next; ?><!--"*/-->
+<!--               href="index.php?page=--><?php //echo $page; ?><!--">Next</a>*/-->
+<!--        --><?php //}
+//    ?>
+<!--</p>-->

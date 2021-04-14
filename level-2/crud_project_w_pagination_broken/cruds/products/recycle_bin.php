@@ -5,7 +5,7 @@
  */
 include '../../includes/header.php';
 
-$read_query = "SELECT product_id, product_image, product_name, date_deleted FROM recipes.`products` WHERE `date_deleted` IS NOT NULL";
+$read_query = "SELECT product_id, product_name, date_deleted FROM recipes.`products` WHERE `date_deleted` IS NOT NULL";
 $result = mysqli_query($connection, $read_query);
 
 if (mysqli_num_rows($result)) { ?>
@@ -13,8 +13,7 @@ if (mysqli_num_rows($result)) { ?>
     <table style="margin-left: 50px" class="table table-striped">
         <tr>
             <td>#</td>
-            <td>Product Name</td>
-            <td>Product Image</td>
+            <td>Product</td>
             <td>Date</td>
             <td>Permanent Delete</td>
             <td>Restore</td>
@@ -26,11 +25,6 @@ if (mysqli_num_rows($result)) { ?>
             <tr>
                 <td><?= $num++ ?></td>
                 <td><?= $row['product_name'] ?></td>
-                <td>
-					<?php if (isset($row['product_image'])) { ?>
-                        <img src="<?= $row['product_image'] ?>" alt="" width="100">
-					<?php } ?>
-                </td>
                 <td><?= $row['date_deleted'] ?></td>
                 <td><a href="delete.php?id=<?= $row['product_id'] ?>" class="btn btn-danger">Permanent Delete</a></td>
                 <td><a href="restore.php?id=<?= $row['product_id'] ?>" class="btn btn-success">Restore</a></td>

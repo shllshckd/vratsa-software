@@ -13,49 +13,49 @@ $products_result = mysqli_query($connection, $products);
 
 ?>
 
-    <h1>Add New Recipe</h1>
-    <form method="post" action="">
-        <div class="form-group">
-            <label for="recipe_name">Enter Recipe Name</label>
-            <input class="form-control" type="text" name="recipe_name" id="recipe_name">
-        </div>
-        <div class="form-group">
-            <label for="prep_description">Enter Recipe Description</label>
-            <input class="form-control" type="text" name="prep_description" id="prep_description">
-        </div>
-        <div class="form-group">
-            <label for="prep_time">Enter Prep Time</label>
-            <input class="form-control" type="text" name="prep_time" id="prep_time">
-        </div>
-        <div class="form-group">
-            <label for="recipe_category_id">Choose Product Category Name</label>
-            <select class="form-control" name="recipe_category_id" id="recipe_category_id">
-                <option value="" selected="selected" disabled="disabled">Please Choose A Category</option>
-				<?php
-				if (mysqli_num_rows($result) > 0) {
-					while ($row = mysqli_fetch_assoc($result)) {
-						echo "<option value=" . $row['recipe_category_id'] . " selected>" . $row['recipe_category_name'] . "</option>";
-					}
-				} else {
-					die('Query failed!' . mysqli_error($connection));
-				}
-				?>
-            </select>
-        </div>
+<h1>Add New Recipe</h1>
+<form method="post" action="">
+    <div class="form-group">
+        <label for="recipe_name">Enter Recipe Name</label>
+        <input class="form-control" type="text" name="recipe_name" id="recipe_name">
+    </div>
+    <div class="form-group">
+        <label for="prep_description">Enter Recipe Description</label>
+        <input class="form-control" type="text" name="prep_description" id="prep_description">
+    </div>
+    <div class="form-group">
+        <label for="prep_time">Enter Prep Time</label>
+        <input class="form-control" type="text" name="prep_time" id="prep_time">
+    </div>
+    <div class="form-group">
+        <label for="recipe_category_id">Choose Product Category Name</label>
+        <select class="form-control" name="recipe_category_id" id="recipe_category_id">
+            <option value="" selected="selected" disabled="disabled">Please Choose A Category</option>
+            <?php
+            if (mysqli_num_rows($result) > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo "<option value=" . $row['recipe_category_id'] . " selected>" . $row['recipe_category_name'] . "</option>";
+                }
+            } else {
+                die('Query failed!' . mysqli_error($connection));
+            }
+            ?>
+        </select>
+    </div>
 
-        <!-- Products Selector -->
-        <h4>Please choose products and quantity. Leave blank quantity where the product doesn't exist.</h4>
-		<?php
-		if (mysqli_num_rows($products_result) > 0) {
-			while ($row = mysqli_fetch_assoc($products_result)) {
-			    echo "<div class='form-group'>";
-				echo "<label>" . $row['product_name'] . " количество:</label>";
-				echo "<input class='form-control' name='products_quantity[\"" . $row['product_id'] . "\"]'></div>";
-			}
-		}
-		?>
-        <button class="btn btn-success">Submit</button>
-    </form>
+    <!-- Products Selector -->
+    <h4>Please choose products and quantity. Leave blank quantity where the product doesn't exist.</h4>
+    <?php
+    if (mysqli_num_rows($products_result) > 0) {
+        while ($row = mysqli_fetch_assoc($products_result)) {
+            echo "<div class='form-group'>";
+            echo "<label>" . $row['product_name'] . " количество:</label>";
+            echo "<input class='form-control' name='products_quantity[\"" . $row['product_id'] . "\"]'></div>";
+        }
+    }
+    ?>
+    <button class="btn btn-success">Submit</button>
+</form>
 
 <?php
 
@@ -83,7 +83,8 @@ if (isset($_POST['recipe_name'])) {
 		if (!empty($_POST['products_quantity'])) {
 			foreach ($_POST['products_quantity'] as $key => $value) {
 				if (!empty($value) && $value > 0) {
-					$insert_product_query = "INSERT INTO recipes.recipes_products (recipe_id, product_id, product_quantity) VALUES ($new_recipe_id, $key, $value)";
+					$insert_product_query = "INSERT INTO recipes.recipes_products (recipe_id, product_id, product_quantity) 
+                                             VALUES ($new_recipe_id, $key, $value)";
 					$result_product = mysqli_query($connection, $insert_product_query); // ?
 				}
 			}
