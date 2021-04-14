@@ -23,8 +23,7 @@ if (!empty($_GET['id'])) {
         <table style="margin-left: 50px" class="table table-striped">
             <tr>
                 <td>#</td>
-                <td>Recipe Name</td>
-                <td>Product Name</td>
+                <td>Product</td>
                 <td>Quantity</td>
             </tr>
 			<?php
@@ -32,7 +31,6 @@ if (!empty($_GET['id'])) {
 			while ($row = mysqli_fetch_assoc($result)) { ?>
                 <tr>
                     <td><?= $num++ ?></td>
-                    <td><?= $row['recipe_name'] ?></td>
                     <td><?= $row['product_name'] ?></td>
                     <td><?= $row['product_quantity'] ?></td>
                 </tr>
