@@ -32,9 +32,6 @@ include 'config.php';
 			<li class="nav-item">
 				<a class="nav-link" href="<?= ROOT_DIR . 'cruds/recipes'?>">Recipes</a>
 			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="<?= ROOT_DIR . 'cruds/visualizer'?>">Visualizer</a>
-			</li>
 		</ul>
 	</div>
 </nav>

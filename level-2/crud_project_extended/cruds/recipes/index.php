@@ -5,15 +5,16 @@
  */
 include '../../includes/header.php';
 
-$read_query = "SELECT a.recipe_id, a.recipe_name, a.prep_description, a.prep_time, b.recipe_category_name, a.date_created 
-               FROM recipes.recipes a LEFT JOIN recipes.recipe_categories b on a.recipe_category_id = b.recipe_category_id 
-               WHERE a.date_deleted IS NULL";
-
+// get all recipes and their information
+$read_query = "SELECT r.recipe_id, r.recipe_name, r.prep_description, r.prep_time, rc.recipe_category_name, r.date_created 
+               FROM recipes.recipes AS r LEFT JOIN recipes.recipe_categories AS rc on r.recipe_category_id = rc.recipe_category_id 
+               WHERE r.date_deleted IS NULL";
 $result = mysqli_query($connection, $read_query);
 
 // var_dump( mysqli_fetch_all($result, MYSQLI_ASSOC));
 // die();
 
+// if any recipes, print them
 if (mysqli_num_rows($result) > 0) { ?>
     <h1>Recipes list | <span><a href="create.php" class="btn btn-info">Add New Recipe</a></span> |
         <a href="recycle_bin.php" class="btn btn-outline-dark">Recycle Bin</a></h1>
@@ -36,8 +37,9 @@ if (mysqli_num_rows($result) > 0) { ?>
             <tr>
                 <td><?= $num++ ?></td>
                 <td>
+                    <!-- link to the view -->
                     <a href="view.php?id=<?= $row['recipe_id']?>&name=<?= $row['recipe_name']?>" >
-						<?= $row['recipe_name']?>
+						<?= $row['recipe_name'] ?>
                     </a>
                 </td>
                 <td><?= $row['prep_description'] ?></td>

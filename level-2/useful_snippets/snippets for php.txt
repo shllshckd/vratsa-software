@@ -1,3 +1,10 @@
+// len
+// strlen(string) < 3
+
+// datetime
+$datetime = date('Y-m-d H:i:s'); // with hours
+$datetime = date("Y-m-d"); // no hours
+
 // files
 in form - enctype="multipart/form-data"
 $_FILES[] - for files

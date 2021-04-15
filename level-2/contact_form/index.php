@@ -6,7 +6,7 @@
 include('partials/database_connection.php');
 include('partials/header.php');
 
-$results_per_page = 2;
+$results_per_page = 4;
 
 if (isset($_GET['page'])) {
 	$page = $_GET['page'];
@@ -18,24 +18,23 @@ else {
 $filter = '';
 $filters_link_for_pagination = '';
 
-
 if (!empty($_GET['message_name'])) {
     $msg_name = $_GET['message_name'];
 	$filter = " AND m.name like '%$msg_name%'";
 }
-//
+
 //if (!empty($_GET['prep_description'])) {
 //	$filter = $filter . ' AND a.prep_description like \'%' . $_GET['prep_description'] . '%\'';
 //}
 
-$get_total_records_query = "SELECT COUNT(*) as count FROM contact_form.messages a where (deleted_at is null $filter)";
+$get_total_records_query = "SELECT COUNT(*) as count FROM contact_form.messages a WHERE (deleted_at IS NULl $filter)";
 $result = mysqli_query($connection, $get_total_records_query);
+
 $total_rows = mysqli_fetch_array($result);
 $total_rows = $total_rows[0];
 $offset = ($page - 1) * $results_per_page;
 
 $pagination_string = '';
-
 if ($total_rows > $results_per_page) {
 	$pagination_string = " ORDER BY message_id LIMIT $results_per_page OFFSET $offset";
 }
@@ -53,7 +52,6 @@ $max_pages = ceil($total_rows / $results_per_page );
     <h2>All messages</h2>
     <a href="create.php" class="btn btn-success">Create</a>
     <a href="recycle.php" class="btn btn-secondary">Recycle Bin</a>
-
     <br><br>
 
     <?php
@@ -62,7 +60,6 @@ $max_pages = ceil($total_rows / $results_per_page );
                    JOIN contact_form.products as p ON m.product_id = p.id
                    JOIN contact_form.categories as c on p.product_category_id = c.category_id
                    WHERE m.`deleted_at` IS NULL $pagination_string $filter";
-
     $result = mysqli_query($connection, $read_query);
 
     if (mysqli_num_rows($result) > 0)
@@ -79,8 +76,7 @@ $max_pages = ceil($total_rows / $results_per_page );
                         <input type="text" name="message_name" value="" placeholder="Message Name">
                     </th>
                     <th>
-                        Email
-<!--                        <input type="text" name="prep_description" value="" placeholder="Preparation">-->
+                        Email <!--   <input type="text" name="prep_description" value="" placeholder="Preparation">-->
                     </th>
                     <th>Phone</th>
                     <th>Message</th>
@@ -112,11 +108,9 @@ $max_pages = ceil($total_rows / $results_per_page );
                 </td>";
             echo "</tr>";
         }
-
         echo "</tbody>";
         echo "</table>";
         ?>
-
         <p>
         <?php
 		    $disabled_or_not = ($page == 1) ? 'disabled' : '';

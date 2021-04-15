@@ -5,7 +5,7 @@
  */
 include '../../includes/header.php';
 
-$read_query = "SELECT p.product_id, p.product_name, p.product_image, p.product_price, pc.product_category_name, p.product_calories, p.date_deleted
+$read_query = "SELECT p.product_id, p.product_name, p.product_price, p.product_calories, p.date_deleted, pc.product_category_name
                FROM recipes.`products` AS p 
                JOIN recipes.product_categories AS pc on p.product_category_id = pc.product_category_id 
                WHERE p.date_deleted IS NULL";
@@ -19,13 +19,11 @@ if (mysqli_num_rows($result) > 0) {?>
         <tr>
             <td>#</td>
             <td>Name</td>
-            <td>Image</td>
             <td>Price</td>
             <td>Calories</td>
             <td>Product Category Name</td>
             <td>Update</td>
             <td>Soft Delete</td>
-            <td>Download Image</td>
         </tr>
 		<?php
 		$num = 1;
@@ -33,21 +31,11 @@ if (mysqli_num_rows($result) > 0) {?>
             <tr>
                 <td><?= $num++ ?></td>
                 <td><?= $row['product_name'] ?></td>
-                <td>
-                    <?php if (isset($row['product_image'])) { ?>
-                        <img src="<?= $row['product_image'] ?>" alt="" width="100">
-                    <?php } ?>
-                </td>
                 <td><?= $row['product_price'] ?></td>
                 <td><?= $row['product_calories'] ?></td>
                 <td><?= $row['product_category_name'] ?></td>
                 <td><a href="update.php?id=<?= $row['product_id'] ?>" class="btn btn-warning">Update</a></td>
                 <td><a href="soft_delete.php?id=<?= $row['product_id'] ?>" class="btn btn-danger">Soft&nbsp;Delete</a></td>
-                <td>
-					<?php if (isset($row['product_image']) && ($row['product_image'] != "") )  {?>
-                        <a href="download.php?id=<?= $row['product_id'] ?>" class="btn btn-success">Download&nbsp;Image</a>
-					<?php } ?>
-                </td>
             </tr>
         <?php } ?>
     </table>

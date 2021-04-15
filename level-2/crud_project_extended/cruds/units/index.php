@@ -7,11 +7,9 @@ include '../../includes/header.php';
 
 //1
 $read_query = "SELECT * FROM recipes.`units` WHERE `date_deleted` IS NULL";
-
 $result = mysqli_query($connection, $read_query);
 
-if (mysqli_num_rows($result) > 0) {
-	?>
+if (mysqli_num_rows($result) > 0) { ?>
     <h1>Units List | <span><a href="create.php" class="btn btn-info">Add New Unit</a></span> |
         <a href="recycle_bin.php" class="btn btn-outline-dark">Recycle Bin</a></h1>
     <table style="margin-left: 50px" class="table table-striped">

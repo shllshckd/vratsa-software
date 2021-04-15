@@ -16,7 +16,7 @@ include('partials/header.php');
 	$read_query = "SELECT * FROM contact_form.messages WHERE `deleted_at` IS NOT NULL ORDER BY `created_at` DESC";
 	$result = mysqli_query($connection, $read_query);
 
-	if(mysqli_num_rows($result) > 0) {
+	if (mysqli_num_rows($result) > 0) {
 		echo "<table class='table table-bordered'>";
 		echo "<thead>";
 			echo "<tr>";
@@ -32,7 +32,7 @@ include('partials/header.php');
 		echo "</thead>";
 		echo "<tbody>";
 
-		while($row = mysqli_fetch_assoc($result)){
+		while ($row = mysqli_fetch_assoc($result)){
 			echo "<tr>";
 				echo "<td>".$row['message_id']."</td>";
 				echo "<td>".$row['name']."</td>";

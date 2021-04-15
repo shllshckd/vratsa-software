@@ -131,3 +131,32 @@ WHERE Salary = (
 )
 ORDER BY Salary ASC
 
+--- recipes crud
+
+SELECT 
+r.recipe_name,
+r.prep_description,
+r.prep_time,
+r.date_created,
+r.date_deleted,
+rc.recipe_category_name,
+rp.product_quantity,
+p.product_name,
+p.product_image,
+p.product_price,
+p.product_calories,
+p.date_deleted as product_date_deleted,
+pc.product_category_name as product_category_name,
+u.unit_name
+from recipes as r 
+left join recipe_categories as rc 
+	on r.recipe_category_id = rc.recipe_category_id
+left join recipes_products as rp 
+	on rp.recipe_id = r.recipe_id
+left join units as u
+	on u.unit_id = rp.unit_id
+left join products as p 
+	on p.product_id = rp.product_id
+left join product_categories as pc
+	on pc.product_category_id = p.product_category_id
+

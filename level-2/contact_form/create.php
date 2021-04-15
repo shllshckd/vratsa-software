@@ -13,33 +13,34 @@ include('partials/header.php');
     <form action="" method="post" accept-charset="utf-8">
         <div>
             <label for="name">Name </label>
-            <input id="name" type="text" name="name" value="" class="form-control">
+            <input id="name" type="text" name="name" class="form-control">
             <small>Name must be at least 3 characters.</small>
         </div>
         <div>
             <label for="email">Email </label>
-            <input id="email" type="text" name="email" value="" class="form-control">
+            <input id="email" type="text" name="email" class="form-control">
         </div>
         <div>
             <label for="phone">Phone </label>
-            <input id="phone" type="text" name="phone" value="" class="form-control">
+            <input id="phone" type="text" name="phone" class="form-control">
         </div>
         <div>
             <label for="message">Message </label>
-            <input id="message" type="text" name="message" value="" class="form-control">
-            <small>Message must be at least 3 characters.</small>
+            <input id="message" type="text" name="message" class="form-control">
+<!--            <small>Message must be at least 3 characters.</small>-->
         </div>
         <div class="form-group">
-            <label>Choose Product Category Name</label>
+            <label>Choose Product Name</label>
             <select class="form-control" name="product_id">
-                <option value="" selected="selected" disabled="disabled">- please choose a category -</option>
+                <option value="" selected="selected" disabled="disabled">- please choose a product -</option>
 				<?php
 				$product = "SELECT id, product_name, product_description FROM contact_form.products";
-				$result_inner = mysqli_query($connection, $product);
+				$result = mysqli_query($connection, $product);
 
-				if (mysqli_num_rows($result_inner) > 0) {
-					while ($row_inner = mysqli_fetch_assoc($result_inner)) {
-						echo "<option value=" . $row_inner['id'] . " selected>" . $row_inner['product_name'] . " - " .  $row_inner['product_description']. "</option>";
+				if (mysqli_num_rows($result) > 0) {
+					while ($row = mysqli_fetch_assoc($result)) {
+					    // between ">" we had selected, here on the dot " .>"
+						echo "<option value=" . $row['id'] . ">" . $row['product_name'] . " - " . $row['product_description']. "</option>";
 					}
 				} else {
 					die('Query failed!' . mysqli_error($connection));
@@ -57,7 +58,9 @@ include('partials/header.php');
 <?php
 
 
-if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['phone']) && isset($_POST['message'])) {
+if (isset($_POST['name']) && isset($_POST['email']) &&
+    isset($_POST['phone']) && isset($_POST['message'])) {
+
 	$name = $_POST['name'];
 	$email = $_POST['email'];
 	$phone = $_POST['phone'];
