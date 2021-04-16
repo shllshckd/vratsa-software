@@ -11,6 +11,7 @@ $read_query = "SELECT `recipe_id`, `recipe_name` ,`prep_description`,`prep_time`
                FROM recipes.recipes WHERE recipe_id = $recipe_id";
 
 $result = mysqli_query($connection, $read_query);
+
 if ($result) {
 	$row = mysqli_fetch_assoc($result);
 }

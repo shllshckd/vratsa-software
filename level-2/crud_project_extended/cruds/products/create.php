@@ -30,7 +30,7 @@ $result = mysqli_query($connection, $category);
             <?php
             if (mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
-                    echo "<option value=" . $row['product_category_id'] . " >" .
+                    echo "<option value=" . $row['product_category_id'] . " selected>" .
                         $row['product_category_name'] . "</option>";
                 }
             } else {

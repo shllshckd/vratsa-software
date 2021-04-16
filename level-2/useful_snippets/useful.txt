@@ -16,7 +16,7 @@ mysqli_.... - to be used
 mysqli_query()- изпълнява заявка
 mysqli_fetch_assoc() - итерира резултат (минава през редовете на таблицата един по един)
 
-mysqli_error($connection)
+mysqli_error($connection) // useful for diplaying errors
 
 mysqli_connect_error() - use in connect.php
 mysqli_connect_errorno()
