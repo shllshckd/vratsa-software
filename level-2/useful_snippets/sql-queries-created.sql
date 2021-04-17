@@ -12,13 +12,41 @@ VALUES ('Пиле Жулиен', 'Вкусно пиле на име Жулиен
 INSERT INTO recipes (recipe_name, preparation_description, preparation_time, recipe_category_id)
 VALUES ('Пъстърва на скара', 'Вкусна риба', 60, 8)
 
---------
+--
 
 CURDATE() -- 2021-04-17
 NOW() -- 2021-04-17 13:11:30
 
---------
+--
 
+SELECT AVG(product_price) as average_price FROM products
+
+SELECT AVG(product_price) as average_price, product_category_id
+FROM products
+GROUP BY product_category_id
+
+SELECT AVG(product_calories) as average_calories, product_category_id
+FROM products
+GROUP BY product_category_id
+
+SELECT MAX(product_calories) as max_calories
+FROM products
+
+SELECT MAX(product_calories) as max_calories, product_category_id
+FROM products
+GROUP BY product_category_id
+
+SELECT MAX(product_calories) as max_calories, product_category_id
+FROM products
+GROUP BY product_category_id
+ORDER BY max_calories DESC
+LIMIT 1
+
+SELECT * FROM products WHERE product_price > (SELECT AVG(product_price) FROM products)
+
+SELECT * FROM products WHERE product_price < (SELECT AVG(product_price) FROM products)
+
+--
 SELECT * FROM table_name
 
 SELECT column_1, column_2, ...
@@ -44,6 +72,7 @@ WHERE recipe_name LIKE '%т%'
 SELECT recipe_name, preparation_description, preparation_time 
 FROM `recipes` 
 WHERE preparation_time > 20
+
 
 SELECT *
 FROM `recipes` 
@@ -104,7 +133,13 @@ LIMIT row_count (how much rows to show)
 OFFSET offset (after how much rows)
 
 --------
+SELECT COUNT(*) as num_rows FROM products
 
+SELECT COUNT(product_id) as products_in_category, product_category_id
+FROM products
+GROUP BY product_category_id
+
+---- recommended
 SELECT preparation_time, COUNT(preparation_time)
 FROM recipes
 GROUP BY preparation_time
@@ -128,7 +163,8 @@ VALUES ('тестово 2',
 )
 
 --
-SELECT * FROM `employees` 
+SELECT *
+FROM `employees`
 WHERE Salary = (SELECT MIN(Salary) FROM employees  )
 ORDER BY Salary ASC
 
