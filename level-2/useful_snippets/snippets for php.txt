@@ -2,8 +2,8 @@
 // strlen(string) < 3
 
 // datetime
-$datetime = date('Y-m-d H:i:s'); // with hours
-$datetime = date("Y-m-d"); // no hours
+$datetime = date('Y-m-d H:i:s'); // with hours, minutes, seconds
+$datetime = date("Y-m-d"); // no hours, minutes, seconds
 
 // files
 in form - enctype="multipart/form-data"

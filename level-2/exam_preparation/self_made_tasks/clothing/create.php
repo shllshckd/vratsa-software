@@ -12,8 +12,8 @@ include('partials/header.php');
 <h1>Add message</h1>
     <form action="" method="post" accept-charset="utf-8">
         <div>
-            <label for="name">Name</label>
-            <input id="name" type="text" name="name" class="form-control">
+            <label for="username">Username</label>
+            <input id="username" type="text" name="username" class="form-control">
         </div>
         <div>
             <label for="email">Email</label>
@@ -24,21 +24,21 @@ include('partials/header.php');
             <input id="phone" type="text" name="phone" class="form-control">
         </div>
         <div>
-            <label for="message">Message</label>
-            <input id="message" type="text" name="message" class="form-control">
+            <label for="request_message">Message </label>
+            <input id="request_message" type="text" name="request_message" class="form-control">
         </div>
         <div class="form-group">
-            <label>Choose Product Name</label>
-            <select class="form-control" name="product_id">
-                <option selected="selected" disabled="disabled">- please choose a product -</option>
+            <label>Choose National Clothing Name</label>
+            <select class="form-control" name="clothing_id">
+                <option selected disabled="disabled">- please choose a product -</option>
 				<?php
-				$product = "SELECT id, product_name, product_description FROM contact_form.products";
-				$result = mysqli_query($connection, $product);
+				$clothing = "SELECT id, name as national_clothing_name, description
+                             FROM clothing.national_clothing";
+				$result = mysqli_query($connection, $clothing);
 
 				if (mysqli_num_rows($result) > 0) {
 					while ($row = mysqli_fetch_assoc($result)) {
-					    // between ">" we had selected, here on the dot " .>"
-						echo "<option value=" . $row['id'] . ">" . $row['product_name'] . " - " . $row['product_description']. "</option>";
+						echo "<option value=" . $row['id'] . ">" . $row['national_clothing_name'] . " - " . $row['description']. "</option>";
 					}
 				} else {
 					die('Query failed!' . mysqli_error($connection));
@@ -56,19 +56,19 @@ include('partials/header.php');
 <?php
 
 
-if (isset($_POST['name']) && isset($_POST['email']) &&
-    isset($_POST['phone']) && isset($_POST['message'])) {
+if (isset($_POST['username']) && isset($_POST['email']) &&
+    isset($_POST['phone']) && isset($_POST['request_message'])) {
 
-	$name = $_POST['name'];
+	$name = $_POST['username'];
 	$email = $_POST['email'];
 	$phone = $_POST['phone'];
-	$message = $_POST['message'];
-	$product_id = $_POST['product_id'];
+	$message = $_POST['request_message'];
+	$clothing_id = $_POST['clothing_id'];
 
-	$date = date('Y-m-d H:i:s');
+	$date = date('Y-m-d');
 
-	$insert_query = "INSERT INTO contact_form.`messages` (`name`,`email`,`phone`,`message`, `date_created`, product_id)  
-    VALUES ('$name', '$email', '$phone', '$message', '$date', '$product_id')";
+	$insert_query = "INSERT INTO clothing.rent_request (`username`,`email`,`phone`,`request_message`, `national_clothing_id`, date_created)  
+    VALUES ('$name', '$email', '$phone', '$message', $clothing_id, '$date')";
 
 	$result = mysqli_query($connection, $insert_query);
 

@@ -16,14 +16,14 @@ $filter = '';
 $filters_link_for_pagination = '';
 if (!empty($_GET['message_name'])) {
     $msg_name = $_GET['message_name'];
-	$filter .= " AND m.name like '%$msg_name%'";
+	$filter .= " AND b.name like '%$msg_name%'";
 }
-if (!empty($_GET['message_email'])) {
-	$msg_email = $_GET['message_email'];
-	$filter .= " AND m.email like '%$msg_email%'";
+if (!empty($_GET['message_age'])) {
+	$msg_age = $_GET['message_age'];
+	$filter .= " AND b.age like '%$msg_age%'";
 }
 
-$get_total_records_query = "SELECT COUNT(*) as count FROM contact_form.messages AS m WHERE (date_deleted IS NULl $filter)";
+$get_total_records_query = "SELECT COUNT(*) as count FROM zaici.bunnies AS b WHERE (date_deleted IS NULl $filter)";
 $result_query = mysqli_query($connection, $get_total_records_query);
 
 $total_rows = mysqli_fetch_array($result_query);
@@ -38,9 +38,9 @@ if (!empty($_GET['order_option_names'])) {
 	$order = $_GET['order_option_names'];
 	$order_param = 'name';
 }
-if (!empty($_GET['order_option_emails'])) {
-	$order = $_GET['order_option_emails'];
-	$order_param = 'email';
+if (!empty($_GET['order_option_ages'])) {
+	$order = $_GET['order_option_ages'];
+	$order_param = 'age';
 }
 
 $pagination_string_ordering = '';
@@ -61,11 +61,10 @@ $max_pages = ceil($total_rows / $results_per_page );
 
     <?php
     // get the entity, it's products and it's categories
-    $read_query = "SELECT m.message_id, m.name, m.email, m.phone, m.message, m.date_created, p.product_name, p.product_description, c.category_name 
-                   FROM contact_form.messages as m 
-                   JOIN contact_form.products as p ON m.product_id = p.id
-                   JOIN contact_form.categories as c on p.product_category_id = c.category_id
-                   WHERE m.`date_deleted` IS NULL $pagination_string_ordering $filter";
+    $read_query = "SELECT b.bunny_id, b.name, b.age, bc.name as bc_name, b.date_created 
+                   FROM zaici.`bunnies` as b 
+                   LEFT JOIN zaici.bunny_categories as bc on bc.category_id = b.category_id
+                   WHERE b.`date_deleted` IS NULL $pagination_string_ordering $filter";
     $result = mysqli_query($connection, $read_query);
 
     if (mysqli_num_rows($result) > 0) { ?>
@@ -80,7 +79,7 @@ $max_pages = ceil($total_rows / $results_per_page );
                         <input class="btn btn-outline-dark" type="submit" value="Apply">
                     </div>
                     <div class="input-group-prepend">
-                        <input class="form-control" type="text" name="message_email" id="message_email" placeholder="Search by email">
+                        <input class="form-control" type="text" name="message_age" id="message_age" placeholder="Search by age">
                         <input class="btn btn-outline-dark" type="submit" value="Apply">
                     </div>
                     <div class="input-group-prepend">
@@ -91,19 +90,15 @@ $max_pages = ceil($total_rows / $results_per_page );
                         </select>
                     </div>
                     <div class="input-group-prepend">
-                        <select class="form-control" name="order_option_emails">
-                            <option value="asc">Ascending order - emails</option>
-                            <option value="desc">Descending order - emails</option>
+                        <select class="form-control" name="order_option_ages">
+                            <option value="asc">Ascending order - age</option>
+                            <option value="desc">Descending order - age</option>
                             <input class="btn btn-outline-dark" type="submit" value="Apply">
                         </select>
                     </div>
                     <th>Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Message</th>
-                    <th>Product Name</th>
-                    <th>Product Description</th>
-                    <th>Product Category Name</th>
+                    <th>Age</th>
+                    <th>Category Name</th>
                     <th>Created At</th>
                     <th>Actions</th>
                 </form>
@@ -114,18 +109,14 @@ $max_pages = ceil($total_rows / $results_per_page );
         <?php
         while($row = mysqli_fetch_assoc($result)){
             echo "<tr>";
-                echo "<td>{$row['message_id']}</td>";
+                echo "<td>{$row['bunny_id']}</td>";
                 echo "<td>{$row['name']}</td>";
-                echo "<td>{$row['email']}</td>";
-                echo "<td>{$row['phone']}</td>";
-                echo "<td>{$row['message']}</td>";
-			    echo "<td>{$row['product_name']}</td>";
-			    echo "<td>{$row['product_description']}</td>";
-			    echo "<td>{$row['category_name']}</td>";
+			    echo "<td>{$row['age']}</td>";
+			    echo "<td>{$row['bc_name']}</td>";
                 echo "<td>{$row['date_created']}</td>";
                 echo "<td>
-                    <a href='update.php?message_id={$row['message_id']}' class='btn btn-sm btn-info'>Update</a>
-                    <a href='soft_delete.php?message_id={$row['message_id']}' class='btn btn-sm btn-warning'>Soft&nbsp;Delete</a>
+                    <a href='update.php?message_id={$row['bunny_id']}' class='btn btn-sm btn-info'>Update</a>
+                    <a href='soft_delete.php?message_id={$row['bunny_id']}' class='btn btn-sm btn-warning'>Soft&nbsp;Delete</a>
                 </td>";
             echo "</tr>";
         }

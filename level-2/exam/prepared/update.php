@@ -42,12 +42,18 @@ $message = mysqli_fetch_assoc($result);
                 <option value="" selected="selected" disabled="disabled">- please choose a product -</option>
 				<?php
 				$product = "SELECT id, product_name, product_description FROM contact_form.products";
-				$result = mysqli_query($connection, $product);
+				$result_product = mysqli_query($connection, $product);
 
-				if (mysqli_num_rows($result) > 0) {
-					while ($row = mysqli_fetch_assoc($result)) {
-						// between ">" we had selected, here on the dot " .>"
-						echo "<option value=" . $row['id'] . ">" . $row['product_name'] . " - " . $row['product_description']. "</option>";
+				if (mysqli_num_rows($result_product) > 0) {
+					while ($row = mysqli_fetch_assoc($result_product)) {
+					    // if product_it from message is equal to product id from products
+						if ($message['product_id'] == $row['id']) {
+							echo "<option value=" . $row['id'] . " selected>" . $row['product_name'] . " - " . $row['product_description'] . "</option>";
+						}
+						else {
+							echo "<option value=" . $row['id'] . " >" . $row['product_name'] . " - " . $row['product_description'] ."</option>";
+						}
+						//echo "<option value=" . $row['id'] . ">" . $row['product_name'] . " - " . $row['product_description']. "</option>";
 					}
 				} else {
 					die('Query failed!' . mysqli_error($connection));

@@ -16,14 +16,14 @@ $filter = '';
 $filters_link_for_pagination = '';
 if (!empty($_GET['message_name'])) {
     $msg_name = $_GET['message_name'];
-	$filter .= " AND m.name like '%$msg_name%'";
+	$filter .= " AND m.recipe_name like '%$msg_name%'";
 }
-if (!empty($_GET['message_email'])) {
-	$msg_email = $_GET['message_email'];
-	$filter .= " AND m.email like '%$msg_email%'";
+if (!empty($_GET['message_description'])) {
+	$msg_desc = $_GET['message_description'];
+	$filter .= " AND m.prep_description like '%$msg_desc%'";
 }
 
-$get_total_records_query = "SELECT COUNT(*) as count FROM contact_form.messages AS m WHERE (date_deleted IS NULl $filter)";
+$get_total_records_query = "SELECT COUNT(*) as count FROM recipes.recipes AS m WHERE (date_deleted IS NULl $filter)";
 $result_query = mysqli_query($connection, $get_total_records_query);
 
 $total_rows = mysqli_fetch_array($result_query);
@@ -33,14 +33,14 @@ $offset = ($page - 1) * $results_per_page;
 
 // descending ascending ordering emails and names
 $order = '';
-$order_param = 'name';
-if (!empty($_GET['order_option_names'])) {
-	$order = $_GET['order_option_names'];
-	$order_param = 'name';
+$order_param = 'recipe_name';
+if (!empty($_GET['order_option_name'])) {
+	$order = $_GET['order_option_name'];
+	$order_param = 'recipe_name';
 }
-if (!empty($_GET['order_option_emails'])) {
-	$order = $_GET['order_option_emails'];
-	$order_param = 'email';
+if (!empty($_GET['order_option_description'])) {
+	$order = $_GET['order_option_description'];
+	$order_param = 'prep_description';
 }
 
 $pagination_string_ordering = '';
@@ -61,10 +61,10 @@ $max_pages = ceil($total_rows / $results_per_page );
 
     <?php
     // get the entity, it's products and it's categories
-    $read_query = "SELECT m.message_id, m.name, m.email, m.phone, m.message, m.date_created, p.product_name, p.product_description, c.category_name 
-                   FROM contact_form.messages as m 
-                   JOIN contact_form.products as p ON m.product_id = p.id
-                   JOIN contact_form.categories as c on p.product_category_id = c.category_id
+    $read_query = "SELECT m.recipe_id, m.recipe_name, m.prep_description, m.prep_time, m.date_created, c.recipe_category_id, 
+                          c.recipe_category_name
+                   FROM recipes.recipes as m 
+                   JOIN recipes.recipe_categories as c on m.recipe_category_id = c.recipe_category_id
                    WHERE m.`date_deleted` IS NULL $pagination_string_ordering $filter";
     $result = mysqli_query($connection, $read_query);
 
@@ -80,31 +80,28 @@ $max_pages = ceil($total_rows / $results_per_page );
                         <input class="btn btn-outline-dark" type="submit" value="Apply">
                     </div>
                     <div class="input-group-prepend">
-                        <input class="form-control" type="text" name="message_email" id="message_email" placeholder="Search by email">
+                        <input class="form-control" type="text" name="message_description" id="message_description" placeholder="Search by description">
                         <input class="btn btn-outline-dark" type="submit" value="Apply">
                     </div>
                     <div class="input-group-prepend">
-                        <select class="form-control" name="order_option_names">
-                            <option value="asc">Ascending order - names</option>
-                            <option value="desc">Descending order - names</option>
+                        <select class="form-control" name="order_option_name">
+                            <option value="asc">Ascending order - name</option>
+                            <option value="desc">Descending order - name</option>
                             <input class="btn btn-outline-dark" type="submit" value="Apply">
                         </select>
                     </div>
                     <div class="input-group-prepend">
-                        <select class="form-control" name="order_option_emails">
-                            <option value="asc">Ascending order - emails</option>
-                            <option value="desc">Descending order - emails</option>
+                        <select class="form-control" name="order_option_description">
+                            <option value="asc">Ascending order - description</option>
+                            <option value="desc">Descending order - description</option>
                             <input class="btn btn-outline-dark" type="submit" value="Apply">
                         </select>
                     </div>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Message</th>
-                    <th>Product Name</th>
-                    <th>Product Description</th>
-                    <th>Product Category Name</th>
-                    <th>Created At</th>
+                    <th>Recipe Name</th>
+                    <th>Preparation Description</th>
+                    <th>Preparation Time</th>
+                    <th>Recipe Category Name</th>
+                    <th>Date Created</th>
                     <th>Actions</th>
                 </form>
             </div>
@@ -114,18 +111,16 @@ $max_pages = ceil($total_rows / $results_per_page );
         <?php
         while($row = mysqli_fetch_assoc($result)){
             echo "<tr>";
-                echo "<td>{$row['message_id']}</td>";
-                echo "<td>{$row['name']}</td>";
-                echo "<td>{$row['email']}</td>";
-                echo "<td>{$row['phone']}</td>";
-                echo "<td>{$row['message']}</td>";
-			    echo "<td>{$row['product_name']}</td>";
-			    echo "<td>{$row['product_description']}</td>";
-			    echo "<td>{$row['category_name']}</td>";
+			    // m.recipe_id, m.recipe_name, m.prep_description, m.prep_time, m.date_created, c.recipe_category_id, c.recipe_category_name
+			    echo "<td>{$row['recipe_id']}</td>";
+                echo "<td>{$row['recipe_name']}</td>";
+                echo "<td>{$row['prep_description']}</td>";
+                echo "<td>{$row['prep_time']}</td>";
+			    echo "<td>{$row['recipe_category_name']}</td>";
                 echo "<td>{$row['date_created']}</td>";
                 echo "<td>
-                    <a href='update.php?message_id={$row['message_id']}' class='btn btn-sm btn-info'>Update</a>
-                    <a href='soft_delete.php?message_id={$row['message_id']}' class='btn btn-sm btn-warning'>Soft&nbsp;Delete</a>
+                    <a href='update.php?message_id={$row['recipe_id']}' class='btn btn-sm btn-info'>Update</a>
+                    <a href='soft_delete.php?message_id={$row['recipe_id']}' class='btn btn-sm btn-warning'>Soft&nbsp;Delete</a>
                 </td>";
             echo "</tr>";
         }
