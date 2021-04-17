@@ -55,7 +55,6 @@ include('partials/header.php');
 
 <?php
 
-
 if (isset($_POST['name']) && isset($_POST['email']) &&
     isset($_POST['phone']) && isset($_POST['message'])) {
 
@@ -68,7 +67,7 @@ if (isset($_POST['name']) && isset($_POST['email']) &&
 	$date = date('Y-m-d H:i:s');
 
 	$insert_query = "INSERT INTO contact_form.messages (name, email, phone, message, date_created, product_id)  
-                     VALUES ('$name', '$email', '$phone', '$message', '$date', '$product_id')";
+                     VALUES ('$name', '$email', '$phone', '$message', '$date', $product_id)";
 
 	$result = mysqli_query($connection, $insert_query);
 

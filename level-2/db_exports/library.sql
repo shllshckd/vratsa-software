@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 14, 2021 at 11:47 AM
+-- Generation Time: Apr 18, 2021 at 12:20 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.3.23
 
@@ -29,8 +29,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `authors` (
   `author_id` int(11) NOT NULL,
-  `author_name` varchar(250) NOT NULL,
-  `nationality_id` int(11) NOT NULL
+  `author_first_name` varchar(250) NOT NULL,
+  `author_last_name` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -52,7 +52,7 @@ CREATE TABLE `books` (
 --
 
 CREATE TABLE `books_authors` (
-  `books_id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `book_id` int(11) NOT NULL,
   `author_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -64,7 +64,7 @@ CREATE TABLE `books_authors` (
 --
 
 CREATE TABLE `books_categories` (
-  `books_id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `book_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -78,8 +78,8 @@ CREATE TABLE `books_categories` (
 CREATE TABLE `book_sizes` (
   `book_size_id` int(11) NOT NULL,
   `book_size_name` varchar(250) NOT NULL,
-  `book_size_from` int(10) NOT NULL,
-  `book_size_to` int(10) NOT NULL
+  `book_size_from` int(11) NOT NULL,
+  `book_size_to` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -101,8 +101,7 @@ CREATE TABLE `categories` (
 -- Indexes for table `authors`
 --
 ALTER TABLE `authors`
-  ADD PRIMARY KEY (`author_id`),
-  ADD KEY `nationality_id` (`nationality_id`);
+  ADD PRIMARY KEY (`author_id`);
 
 --
 -- Indexes for table `books`
@@ -115,15 +114,17 @@ ALTER TABLE `books`
 -- Indexes for table `books_authors`
 --
 ALTER TABLE `books_authors`
-  ADD PRIMARY KEY (`books_id`),
-  ADD KEY `author_id` (`author_id`,`book_id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `author_id` (`author_id`),
+  ADD KEY `book_id` (`book_id`);
 
 --
 -- Indexes for table `books_categories`
 --
 ALTER TABLE `books_categories`
-  ADD PRIMARY KEY (`books_id`),
-  ADD KEY `category_id` (`category_id`,`book_id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `book_id` (`book_id`),
+  ADD KEY `category_id` (`category_id`);
 
 --
 -- Indexes for table `book_sizes`
@@ -157,13 +158,13 @@ ALTER TABLE `books`
 -- AUTO_INCREMENT for table `books_authors`
 --
 ALTER TABLE `books_authors`
-  MODIFY `books_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `books_categories`
 --
 ALTER TABLE `books_categories`
-  MODIFY `books_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `book_sizes`
@@ -182,16 +183,24 @@ ALTER TABLE `categories`
 --
 
 --
--- Constraints for table `authors`
---
-ALTER TABLE `authors`
-  ADD CONSTRAINT `authors_ibfk_1` FOREIGN KEY (`author_id`) REFERENCES `books_authors` (`author_id`);
-
---
 -- Constraints for table `books`
 --
 ALTER TABLE `books`
-  ADD CONSTRAINT `books_ibfk_1` FOREIGN KEY (`book_id`) REFERENCES `books_authors` (`books_id`);
+  ADD CONSTRAINT `books_ibfk_1` FOREIGN KEY (`book_size_id`) REFERENCES `book_sizes` (`book_size_id`);
+
+--
+-- Constraints for table `books_authors`
+--
+ALTER TABLE `books_authors`
+  ADD CONSTRAINT `books_authors_ibfk_1` FOREIGN KEY (`author_id`) REFERENCES `authors` (`author_id`),
+  ADD CONSTRAINT `books_authors_ibfk_2` FOREIGN KEY (`book_id`) REFERENCES `books` (`book_id`);
+
+--
+-- Constraints for table `books_categories`
+--
+ALTER TABLE `books_categories`
+  ADD CONSTRAINT `books_categories_ibfk_1` FOREIGN KEY (`book_id`) REFERENCES `books` (`book_id`),
+  ADD CONSTRAINT `books_categories_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `categories` (`category_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

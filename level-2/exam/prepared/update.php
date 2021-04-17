@@ -41,7 +41,7 @@ $message = mysqli_fetch_assoc($result);
             <select class="form-control" name="product_id">
                 <option value="" selected="selected" disabled="disabled">- please choose a product -</option>
 				<?php
-				$product = "SELECT id, product_name, product_description FROM contact_form.products";
+				$product = "SELECT id, product_name, product_description FROM contact_form.products WHERE date_deleted IS NULL";
 				$result_product = mysqli_query($connection, $product);
 
 				if (mysqli_num_rows($result_product) > 0) {

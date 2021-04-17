@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 14, 2021 at 11:47 AM
+-- Generation Time: Apr 18, 2021 at 12:46 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.3.23
 
@@ -55,8 +55,8 @@ CREATE TABLE `messages` (
   `email` varchar(100) NOT NULL,
   `phone` varchar(10) DEFAULT NULL,
   `message` varchar(100) NOT NULL,
-  `created_at` datetime DEFAULT NULL,
-  `deleted_at` datetime DEFAULT NULL,
+  `date_created` date DEFAULT NULL,
+  `date_deleted` date DEFAULT NULL,
   `product_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -64,14 +64,25 @@ CREATE TABLE `messages` (
 -- Dumping data for table `messages`
 --
 
-INSERT INTO `messages` (`message_id`, `name`, `email`, `phone`, `message`, `created_at`, `deleted_at`, `product_id`) VALUES
-(5, 'Test2', 'goealkeeper@footballers.com', '0884615648', 'We burst it. Please fix.', '2021-02-28 15:04:18', NULL, 3),
-(6, 'Donatelo', 'none@noreply.bg', '08692651', 'I think it\'s broken. My car isn\'t moving!', '2021-02-28 15:05:01', NULL, 5),
-(14, 'Employee', 'tester@site.com', '0819841348', 'Doesn\'t warm up the room!', '2021-03-15 23:01:47', NULL, 7),
-(15, 'Tester', 'tester@site.com', '12142', 'It broke.', '2021-03-15 23:06:23', NULL, 6),
-(16, 'Dev', 'dev@csharp.com', '123141212', 'My laptop just broke! Could you fix it?', '2021-03-15 23:07:11', NULL, 1),
-(22, 'ааа', 'аааа', '21412', 'ввяея', '2021-03-24 18:21:11', NULL, 6),
-(23, 'penka', 'pe4kata3@abv.bg', '234232', 'ами нещо не ми работи печката!', '2021-03-25 14:37:53', NULL, 7);
+INSERT INTO `messages` (`message_id`, `name`, `email`, `phone`, `message`, `date_created`, `date_deleted`, `product_id`) VALUES
+(6, 'Donatelo', 'none@noreply.bg', '08692651', 'I think it\'s broken. My car isn\'t moving!', '2021-02-28', NULL, 5),
+(15, 'Tester', 'tester@site.com', '12142', 'It broke.', '2021-03-15', NULL, 6),
+(16, 'zarun-dell', 'dev@monthy.com', '123141212', 'My DELL laptop just broke! Could you fix it? Please!?', '2021-03-15', NULL, 8),
+(22, 'ааа', 'asd@abv.bg', '21412', 'ввяея', '2021-03-24', NULL, 6),
+(23, 'penka', 'pe4kata3@abv.bg', '234232', 'ами нещо не ми работи печката!', '2021-03-25', NULL, 7),
+(25, 'ball', 'ball@ball.bg', 'ball', 'ball', '2021-04-15', NULL, 3),
+(26, 'topoka', 'topoka@asd.bg', 'topoka', 'topoka', '2021-04-15', NULL, 3),
+(30, 'works', 'works@w.com', '1ads', 'works', '2021-04-15', NULL, 3),
+(32, 'asdafa', 'das@ahan.com', '312', 'topoka', '2021-04-15', NULL, 8),
+(33, 'engineer', 'engineer@zaici.bg', '312123', 'one more engine', '2021-04-15', NULL, 5),
+(35, '!!ryibja', '!!ryibja2msg.bg', '!!2314222', '!!ibja', '2021-04-16', NULL, 8),
+(37, 'drug', 'tester@site.com', '2132', 'aad', '2021-04-17', NULL, 1),
+(38, 'aaa', 'nqmam@abv.bg', '12142', '132', '2021-04-17', NULL, 1),
+(39, 'aaa', 'nqmam@abv.bg', '12142', '132', '2021-04-17', NULL, 3),
+(40, 'test', 'nqmam', '1312', '1aa', '2021-04-17', NULL, 5),
+(41, 'will', 'this', '313121', 'idk', '2021-04-17', NULL, 1),
+(42, 'ffs', 'sfds', '11234', 'sfsfs', '2021-04-17', NULL, 3),
+(43, 'nai nov produkt', 'nai nov produkt', '31223', 'nai nov produkt', '2021-04-17', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -98,7 +109,8 @@ INSERT INTO `products` (`id`, `product_name`, `product_description`, `product_pr
 (3, 'Ball', 'High quality ball.', '20.00', '2021-03-15', NULL, 2),
 (5, 'Engine', 'For the car to work.', '356.00', '2021-03-15', NULL, 3),
 (6, 'Refrigerator', 'Keeps the food cold.', '400.00', '2021-03-15', NULL, 4),
-(7, 'Heater', 'For you to feel warm.', '350.00', '2021-03-15', NULL, 5);
+(7, 'Heater', 'For you to feel warm.', '350.00', '2021-03-15', NULL, 5),
+(8, 'dell', 'dell le biutiful', '256.00', '2021-04-28', NULL, 1);
 
 --
 -- Indexes for dumped tables
@@ -138,13 +150,13 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 16, 2021 at 12:32 AM
+-- Generation Time: Apr 18, 2021 at 12:19 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.3.23
 
@@ -54,7 +54,7 @@ INSERT INTO `products` (`product_id`, `product_name`, `product_category_id`, `pr
 (12, 'масло', 4, '2.90', 180, NULL),
 (14, 'бананов сок', 8, '4.00', 80, NULL),
 (15, 'ябълков сок', 8, '2.50', 40, NULL),
-(16, 'портокал', 1, '25.00', 125, NULL),
+(16, 'портокал', 3, '25.00', 125, NULL),
 (17, 'грейпфрут', 1, '2.00', 30, NULL),
 (19, 'мандарина', 1, '2.00', 50, NULL),
 (22, 'test', NULL, '10.00', 10, NULL),
@@ -112,17 +112,14 @@ CREATE TABLE `recipes` (
 --
 
 INSERT INTO `recipes` (`recipe_id`, `recipe_name`, `prep_description`, `prep_time`, `recipe_category_id`, `date_created`, `date_deleted`) VALUES
-(1, 'Таратор', 'Таратор описание', 10, 1, '2021-02-18', NULL),
+(1, 'Таратор основно', 'Таратор описание основно', 239, 5, '2021-02-18', NULL),
 (2, 'палачинки', 'Lorem ipsum ibudoloris', 60, 4, '2021-02-18', NULL),
 (13, 'Spring Rolls', 'Mix the meat with the marinade ingredients and set aside for about 30 minutes ...', 30, 1, '1985-09-11', NULL),
-(15, 'проба', 'няма', 60, 1, '2021-02-21', NULL),
 (17, 'Супа пиле', 'Lorem Ipsum Ibudoloris', 45, 1, '2021-02-01', NULL),
 (18, 'Пиле Жулиен', 'Lorem ipsum', 55, 5, '2020-02-21', NULL),
 (19, 'Пиле Жулиен2', 'Lorem ipsum', 55, 5, '2020-02-21', NULL),
 (20, 'Пиле Жулоен11', 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit', 55, 5, '2020-02-21', NULL),
 (21, 'Лазаня', ' Lorem ipsum dksasdkj', 90, 5, '2021-02-21', NULL),
-(22, ' Шопска салата', ' Lorem ipsum dksasdkj', 90, 3, '2021-02-10', NULL),
-(23, ' Овчарска салата', ' Lorem ipsum dksasdkj', 90, 3, '2021-02-08', NULL),
 (24, 'Тестово Ястие7', 'Начин  на приготвяне .....', 120, 2, '2021-02-21', NULL),
 (26, 'Ястие без категория', 'Описание', 30, NULL, '2021-03-01', NULL),
 (27, 'new recipe', 'description adsadas', 10, NULL, '2020-10-10', NULL),
@@ -134,11 +131,9 @@ INSERT INTO `recipes` (`recipe_id`, `recipe_name`, `prep_description`, `prep_tim
 (33, 'Сирене по Врачански', 'Описание', 11, 5, '2021-03-08', NULL),
 (34, 'Миди Сен-Жак', 'test', 60, 2, '2021-03-08', NULL),
 (36, 'fasfas', 'fsafsafasfsa', 11, 4, '2021-03-14', NULL),
-(37, 'ds', 'dsaasd', 11, 2, '2021-03-14', NULL),
 (38, 'safsa', 'fsasfa', 11, 2, '2021-03-14', NULL),
 (39, 'fasfa', 'asdas', 11, 3, '2021-03-14', NULL),
 (40, 'dasadasfd', 'fasfasfsa', 111, 3, '2021-03-14', NULL),
-(41, 'Тестова Рецепта 14.03 1', 'Тестова Рецепта 14.03 1 Описание', 10, 2, '2021-03-14', NULL),
 (42, 'Рецепта без продукти', 'рецепта', 1, 5, '2021-03-14', NULL),
 (43, 'Рецепта без продукти', 'Тестова Рецепта 14.03 1 Описание', 1, 2, '2021-03-14', NULL),
 (44, 'wrqrw', 'wrqrwq', 11, 2, '2021-03-14', NULL),
@@ -149,7 +144,12 @@ INSERT INTO `recipes` (`recipe_id`, `recipe_name`, `prep_description`, `prep_tim
 (60, 'нова р', 'нова р', 312, 2, '2021-04-15', NULL),
 (61, 'Рецепти с про', 'Description', 411, 8, '2021-04-15', NULL),
 (62, 'вкусна супа 123', 'вкусна супа', 34, 1, '2021-04-08', NULL),
-(63, 'вкусна супа 123', 'вкусна супа', 34, 1, '2021-04-08', NULL);
+(63, 'вкусна супа 123', 'вкусна супа', 34, 1, '2021-04-08', NULL),
+(65, 'imam qica meso i brashno', 'imam qica meso i brashno', 3422, 1, '2021-04-17', NULL),
+(66, 'imam zahar ,soda, sol i cherven piper', 'imam zahar ,soda, sol i cherven piper', 11, 2, '2021-04-17', NULL),
+(67, 'mlqko moe mlqko test mandarina', 'mlqko moe mlqko test mandarina', 2132, 5, '2021-04-17', NULL),
+(68, 'imam zahar mlqko mandarina qica', 'imam zahar mlqko mandarina qica', 423, 3, '2021-04-17', NULL),
+(69, 'imam  test mandarina greipfrit', 'imam  test mandarina greipfrit', 31, 2, '2021-04-17', NULL);
 
 -- --------------------------------------------------------
 
@@ -200,7 +200,24 @@ INSERT INTO `recipes_products` (`id`, `recipe_id`, `product_id`, `product_quanti
 (96, 60, 23, '4.000', NULL),
 (97, 61, 1, '1.000', NULL),
 (98, 61, 2, '1.000', NULL),
-(99, 1, 32, '123.000', 1);
+(99, 1, 32, '123.000', 1),
+(100, 65, 1, '1.000', NULL),
+(101, 65, 3, '2.000', NULL),
+(102, 65, 4, '3.000', NULL),
+(103, 66, 5, '1.000', NULL),
+(104, 66, 6, '2.000', NULL),
+(105, 66, 7, '3.000', NULL),
+(106, 67, 19, '3.000', NULL),
+(107, 67, 23, '3.000', NULL),
+(108, 67, 30, '1.000', NULL),
+(109, 67, 32, '1.000', NULL),
+(110, 68, 3, '1.000', NULL),
+(111, 68, 5, '1.000', NULL),
+(112, 68, 19, '1.000', NULL),
+(113, 68, 28, '1.000', NULL),
+(114, 69, 17, '11.000', NULL),
+(115, 69, 19, '111.000', NULL),
+(116, 69, 23, '111.000', NULL);
 
 -- --------------------------------------------------------
 
@@ -315,13 +332,13 @@ ALTER TABLE `product_categories`
 -- AUTO_INCREMENT for table `recipes`
 --
 ALTER TABLE `recipes`
-  MODIFY `recipe_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `recipe_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT for table `recipes_products`
 --
 ALTER TABLE `recipes_products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
 
 --
 -- AUTO_INCREMENT for table `recipe_categories`

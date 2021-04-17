@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 14, 2021 at 11:47 AM
+-- Generation Time: Apr 18, 2021 at 12:46 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.3.23
 
@@ -99,7 +99,9 @@ INSERT INTO `scores` (`score_id`, `user_id`, `score`, `date_created`, `date_dele
 (328, 66, 3470, '2021-04-14', NULL, 0),
 (329, 66, 3470, '2021-04-14', NULL, 1),
 (330, 66, 50, '2021-04-14', NULL, 1),
-(331, 66, 55, '2021-04-14', NULL, 1);
+(331, 66, 55, '2021-04-14', NULL, 1),
+(332, 62, 50, '2021-04-14', NULL, 1),
+(333, 62, 35, '2021-04-14', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -121,7 +123,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `username`, `password`, `date_created`, `date_deleted`, `wins_count`) VALUES
-(62, 'kris', '$2y$10$ngj7tRYFA1AROwt1i5a5oO.vQB3uyhdm216NUB5Dug.UBLi.uwtpG', '2021-04-09', NULL, 101),
+(62, 'kris', '$2y$10$ngj7tRYFA1AROwt1i5a5oO.vQB3uyhdm216NUB5Dug.UBLi.uwtpG', '2021-04-09', NULL, 102),
 (63, 'localuser', '$2y$10$ya7McHX2BcaaOFg378.//uno5k4/CLFiKeMP045lErKmmuo9xOsai', '2021-04-09', NULL, 3),
 (64, 'kris1', '$2y$10$RLrQZp1IuFHX.3tmolnf1OgLDxr/DyWSNhW/Z.zG/ToxPR2G8unvq', '2021-04-12', NULL, 0),
 (65, 'kris3', '$2y$10$s4hvFkUaZ8S5wLCDkZoQw.xUgo4eHNYgHq6fytORl81toFL0HA9Sq', '2021-04-12', NULL, 0),
@@ -165,7 +167,7 @@ ALTER TABLE `results`
 -- AUTO_INCREMENT for table `scores`
 --
 ALTER TABLE `scores`
-  MODIFY `score_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=332;
+  MODIFY `score_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=334;
 
 --
 -- AUTO_INCREMENT for table `users`

@@ -45,6 +45,11 @@ LIMIT 1
 SELECT * FROM products WHERE product_price > (SELECT AVG(product_price) FROM products)
 
 SELECT * FROM products WHERE product_price < (SELECT AVG(product_price) FROM products)
+--
+
+SELECT COUNT(CustomerID), Country
+FROM Customers
+GROUP BY Country
 
 --
 SELECT * FROM table_name
