@@ -32,7 +32,7 @@ include('partials/header.php');
             <select class="form-control" name="product_id">
                 <option selected="selected" disabled="disabled">- please choose a product -</option>
 				<?php
-				$product = "SELECT id, product_name, product_description FROM contact_form.products";
+				$product = "SELECT id, product_name, product_description FROM contact_form.products WHERE date_deleted IS NULL";
 				$result = mysqli_query($connection, $product);
 
 				if (mysqli_num_rows($result) > 0) {
@@ -67,7 +67,7 @@ if (isset($_POST['name']) && isset($_POST['email']) &&
 
 	$date = date('Y-m-d H:i:s');
 
-	$insert_query = "INSERT INTO contact_form.`messages` (`name`,`email`,`phone`,`message`, `date_created`, product_id)  
+	$insert_query = "INSERT INTO contact_form.messages (name, email, phone, message, date_created, product_id)  
     VALUES ('$name', '$email', '$phone', '$message', '$date', '$product_id')";
 
 	$result = mysqli_query($connection, $insert_query);

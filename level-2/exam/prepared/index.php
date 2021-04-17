@@ -10,6 +10,7 @@ include('partials/header.php');
 $results_per_page = 4;
 if (isset($_GET['page'])) { $page = $_GET['page']; }
 else { $page = 1; }
+$offset = ($page - 1) * $results_per_page;
 
 // filtering stuff
 $filter = '';
@@ -29,7 +30,7 @@ $result_query = mysqli_query($connection, $get_total_records_query);
 $total_rows = mysqli_fetch_array($result_query);
 $total_rows = $total_rows[0];
 
-$offset = ($page - 1) * $results_per_page;
+// offset was here
 
 // descending ascending ordering emails and names
 $order = '';
