@@ -17,11 +17,11 @@ $filter = '';
 $filters_link_for_pagination = '';
 if (!empty($_GET['message_name'])) {
     $msg_name = $_GET['message_name'];
-	$filter .= " AND m.name like '%$msg_name%'";
+	$filter .= " AND m.name like '%$msg_name%' ";
 }
 if (!empty($_GET['message_email'])) {
 	$msg_email = $_GET['message_email'];
-	$filter .= " AND m.email like '%$msg_email%'";
+	$filter .= " AND m.email like '%$msg_email%' ";
 }
 
 $get_total_records_query = "SELECT COUNT(*) as count FROM contact_form.messages AS m WHERE (date_deleted IS NULl $filter)";
@@ -50,7 +50,6 @@ if ($total_rows > $results_per_page) {
 }
 
 $max_pages = ceil($total_rows / $results_per_page );
-
 ?>
 
 <div class="container fluid padding">
@@ -66,7 +65,7 @@ $max_pages = ceil($total_rows / $results_per_page );
                    FROM contact_form.messages as m 
                    JOIN contact_form.products as p ON m.product_id = p.id
                    JOIN contact_form.categories as c on p.product_category_id = c.category_id
-                   WHERE m.`date_deleted` IS NULL $pagination_string_ordering $filter";
+                   WHERE m.date_deleted IS NULL $filter $pagination_string_ordering";
     $result = mysqli_query($connection, $read_query);
 
     if (mysqli_num_rows($result) > 0) { ?>

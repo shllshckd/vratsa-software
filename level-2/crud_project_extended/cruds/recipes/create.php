@@ -5,14 +5,6 @@
  */
 include '../../includes/header.php';
 
-// get all categories
-$category = "SELECT recipe_category_id, recipe_category_name FROM recipes.recipe_categories";
-$result_category = mysqli_query($connection, $category);
-
-// get all products
-$products = "SELECT product_id, product_name FROM recipes.products WHERE date_deleted IS NULL";
-$result_products = mysqli_query($connection, $products);
-
 ?>
 
 <h1>Add New Recipe</h1>
@@ -34,7 +26,11 @@ $result_products = mysqli_query($connection, $products);
         <select class="form-control" name="recipe_category_id" id="recipe_category_id">
             <option value="" selected="selected" disabled="disabled">Please Choose A Category</option>
             <?php
-            // if any categories, print them - ready to be selected
+			// get all categories
+			$category = "SELECT recipe_category_id, recipe_category_name FROM recipes.recipe_categories";
+			$result_category = mysqli_query($connection, $category);
+
+			// if any categories, print them - ready to be selected
             // we can select only one of these
             if (mysqli_num_rows($result_category) > 0) {
                 while ($row = mysqli_fetch_assoc($result_category)) {
@@ -50,12 +46,16 @@ $result_products = mysqli_query($connection, $products);
     <!-- Multiple Products Selector -->
     <h4>Please choose products and quantity. Leave blank quantity where the product doesn't exist.</h4>
     <?php
+	// get all products
+	$products = "SELECT product_id, product_name FROM recipes.products WHERE date_deleted IS NULL";
+	$result_products = mysqli_query($connection, $products);
+
 	// if any products, print multiple input fields for them
 	if (mysqli_num_rows($result_products) > 0) {
-        while ($row = mysqli_fetch_assoc($result_products)) {
+        while ($row_products = mysqli_fetch_assoc($result_products)) {
             echo "<div class='form-group'>";
-            echo "<label>" . $row['product_name'] . " количество:</label>";
-            echo "<input class='form-control' name='products_quantity[\"" . $row['product_id'] . "\"]'></div>";
+            echo "<label>" . $row_products['product_name'] . " количество:</label>";
+            echo "<input class='form-control' name='products_quantity[\"" . $row_products['product_id'] . "\"]'></div>";
         }
     }
     ?>
@@ -81,23 +81,21 @@ if (isset($_POST['recipe_name'])) {
 	if ($result) {
 		echo "Record created successfully.";
 
+		// get id of last thing (recipe) that was put in db
+		$new_recipe_id = mysqli_insert_id($connection);
+		// if we want to insert products
+        // for each product we want to be inserted, insert it into recipes products
+		if (!empty($_POST['products_quantity'])) {
 
-//		// get id of last thing (recipe) that was put in db
-//		$new_recipe_id = mysqli_insert_id($connection);
-//
-//		// if we want to insert products
-//        // for each product we want to be inserted, insert it into recipes products
-//		if (!empty($_POST['products_quantity'])) {
-//
-//		    // iterate products quantities collection - product id => quantity of that product (from input)
-//			foreach ($_POST['products_quantity'] as $key => $value) {
-//				if (!empty($value) && $value > 0) {
-//					$insert_product_query = "INSERT INTO recipes.recipes_products (recipe_id, product_id, product_quantity)
-//                                             VALUES ($new_recipe_id, $key, $value)";
-//					$result_product = mysqli_query($connection, $insert_product_query);
-//				}
-//			}
-//		}
+		    // iterate products quantities collection - product id => quantity of that product (from input)
+			foreach ($_POST['products_quantity'] as $key => $value) {
+				if (!empty($value) && $value > 0) {
+					$insert_product_query = "INSERT INTO recipes.recipes_products (recipe_id, product_id, product_quantity)
+                                             VALUES ($new_recipe_id, $key, $value)";
+					$result_product = mysqli_query($connection, $insert_product_query);
+				}
+			}
+		}
 	} else {
 		die('Query failed. ' . mysqli_error($connection));
 	}

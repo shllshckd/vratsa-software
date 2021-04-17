@@ -13,7 +13,7 @@ include('partials/header.php');
 	<h2>All soft-deleted entries</h2>
 
 	<?php
-	$read_query = "SELECT * FROM contact_form.messages WHERE `date_deleted` IS NOT NULL ORDER BY `date_created` DESC";
+	$read_query = "SELECT * FROM contact_form.messages WHERE date_deleted IS NOT NULL ORDER BY date_deleted DESC";
 	$result = mysqli_query($connection, $read_query);
 
 	if (mysqli_num_rows($result) > 0) {

@@ -46,7 +46,7 @@ $message = mysqli_fetch_assoc($result);
 
 				if (mysqli_num_rows($result_product) > 0) {
 					while ($row = mysqli_fetch_assoc($result_product)) {
-					    // if product_it from message is equal to product id from products
+					    // if product_id from message is equal to product id from products
 						if ($message['product_id'] == $row['id']) {
 							echo "<option value=" . $row['id'] . " selected>" . $row['product_name'] . " - " . $row['product_description'] . "</option>";
 						}

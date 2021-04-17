@@ -1,5 +1,7 @@
 INSERT INTO table_name (column_1, column_2, ...) 
 VALUES (value_1, value_2, ...)
+// '' for strings
+// no '' for integers
 
 INSERT INTO `recipes` (`recipe_name`, `preparation_description`, `preparation_time`, `recipe_category_id`) 
 VALUES ('Супа пиле', 'Вкусно ястие', 45, 1) 
@@ -96,7 +98,7 @@ WHERE recipe_id = 2
 DELETE FROM `recipes` 
 WHERE recipe_name = 'Пъстърва на скара'
 
---------
+-------- limit and offset
 
 LIMIT row_count (how much rows to show)
 OFFSET offset (after how much rows)
@@ -111,6 +113,7 @@ SELECT preparation_time, COUNT(preparation_time) AS counted_preparation_time
 FROM recipes
 GROUP BY preparation_time
 
+-- having
 SELECT preparation_time, COUNT(preparation_time) AS counted_preparation_time
 FROM recipes
 GROUP BY preparation_time
@@ -126,9 +129,7 @@ VALUES ('тестово 2',
 
 --
 SELECT * FROM `employees` 
-WHERE Salary = (
-	SELECT MIN(Salary) FROM employees  
-)
+WHERE Salary = (SELECT MIN(Salary) FROM employees  )
 ORDER BY Salary ASC
 
 --- recipes crud
