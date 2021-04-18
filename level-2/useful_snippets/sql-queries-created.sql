@@ -2,7 +2,8 @@ INSERT INTO table_name (column_1, column_2, ...)
 VALUES (value_1, value_2, ...)
 // '' for strings
 // no '' for integers
-
+// _ one character must be present
+// %a% - anything containing a
 INSERT INTO `recipes` (`recipe_name`, `preparation_description`, `preparation_time`, `recipe_category_id`) 
 VALUES ('Супа пиле', 'Вкусно ястие', 45, 1) 
 
@@ -12,14 +13,38 @@ VALUES ('Пиле Жулиен', 'Вкусно пиле на име Жулиен
 INSERT INTO recipes (recipe_name, preparation_description, preparation_time, recipe_category_id)
 VALUES ('Пъстърва на скара', 'Вкусна риба', 60, 8)
 
---
+----
+DATE_FORMAT(date_created, '%Y-%m-%d')
+----
 
-CURDATE() -- 2021-04-17
-NOW() -- 2021-04-17 13:11:30
+LIMIT - take specified count rows
+OFFSET - skip specified count rows
+----
+LIMIT 3, 5 - skip first 3 and take 5
+----
+... WHERE date_created BETWEEN '2021-01-18' AND CURDATE()
+----
 
---
+CURDATE() -- 2021-04-17 (short)
+NOW() -- 2021-04-17 13:11:30 (long)
+
+-- group by - with agregate functions
+
+SELECT COUNT(product_id) as num_products, product_price 
+FROM products 
+GROUP BY product_price 
+ORDER BY product_price
+
+SELECT COUNT(product_id) as num_products, product_calories 
+FROM products 
+GROUP BY product_calories 
+ORDER BY product_price
 
 SELECT AVG(product_price) as average_price FROM products
+
+SELECT AVG(product_price) as average_price_milk
+FROM products
+WHERE product_name like '%мляко%'
 
 SELECT AVG(product_price) as average_price, product_category_id
 FROM products
@@ -28,6 +53,8 @@ GROUP BY product_category_id
 SELECT AVG(product_calories) as average_calories, product_category_id
 FROM products
 GROUP BY product_category_id
+
+----
 
 SELECT MAX(product_calories) as max_calories
 FROM products
@@ -167,7 +194,7 @@ VALUES ('тестово 2',
         CURDATE()
 )
 
---
+
 SELECT *
 FROM `employees`
 WHERE Salary = (SELECT MIN(Salary) FROM employees  )
