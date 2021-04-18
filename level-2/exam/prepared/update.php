@@ -16,8 +16,9 @@ $message = mysqli_fetch_assoc($result);
 
 ?>
 
-<div class="container fluid padding">
-<h1>Update message with ID <?= $message['message_id'] ?></h1>
+<div class="container fluid padding p-3">
+    <h1>CRUD - Update entry with ID <?= $message['message_id'] ?></h1>
+    <hr>
     <form action="update_two.php" method="post" accept-charset="utf-8">
         <div>
             <label for="name">Name: </label>

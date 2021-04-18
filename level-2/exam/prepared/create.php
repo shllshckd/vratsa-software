@@ -8,8 +8,9 @@ include('partials/header.php');
 
 ?>
 
-<div class="container fluid padding">
-<h1>Add message</h1>
+<div class="container fluid padding p-3">
+    <h1 class="">CRUD - Create an entry</h1>
+    <hr>
     <form action="" method="post" accept-charset="utf-8">
         <div>
             <label for="name">Name</label>

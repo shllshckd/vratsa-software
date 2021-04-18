@@ -55,16 +55,18 @@ if ($total_rows > $results_per_page) {
 $max_pages = ceil($total_rows / $results_per_page );
 ?>
 
-<div class="container fluid padding">
-    <h1>CRUD</h1>
-    <h2>All entries</h2>
+<div class="container fluid padding p-3">
+    <h1>CRUD - Index | All entries</h1>
+    <hr>
     <a href="create.php" class="btn btn-success">Create</a>
     <a href="recycle.php" class="btn btn-secondary">Recycle Bin</a>
     <br><br>
 
     <?php
-    // get the entity, it's products and it's categories
-    $read_query = "SELECT m.message_id, m.name, m.email, m.phone, m.message, m.date_created, p.product_name, p.product_description, c.category_name 
+    // get the entities, their products and their categories
+    $read_query = "SELECT m.message_id, m.name, m.email, m.phone, m.message, m.date_created, 
+                          p.product_name, p.product_description,
+                          c.category_name 
                    FROM contact_form.messages as m 
                    JOIN contact_form.products as p ON m.product_id = p.id
                    JOIN contact_form.categories as c on p.product_category_id = c.category_id
@@ -75,7 +77,6 @@ $max_pages = ceil($total_rows / $results_per_page );
         <table class='table table-bordered'>
             <thead>
             <tr>
-            <th>Id</th>
             <div class="form-group col-lg-4">
                 <form action="index.php" method="get" accept-charset="utf-8">
                     <div class="input-group-prepend">
@@ -100,6 +101,7 @@ $max_pages = ceil($total_rows / $results_per_page );
                             <input class="btn btn-outline-dark" type="submit" value="Apply">
                         </select>
                     </div>
+                    <th>Id</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Phone</th>
@@ -148,11 +150,9 @@ $max_pages = ceil($total_rows / $results_per_page );
                 <a class="btn btn-sm btn-outline-dark <?= $disabled_or_not_for_previous; ?>"
                    href="index.php?page=1"><i class="fas fa-arrow-left"></i>&nbsp;&nbsp;Previous</a>
             <?php }
-
             for ($i = 1; $i <= $max_pages; $i++) {
                 echo "<a class=\"btn btn-sm btn-outline-dark\" href='index.php?page=$i'>$i</a>";
             }
-
 		    $disabled_or_not_for_next = ($page >= $max_pages) ? 'disabled' : '';
 		    if ($page < $max_pages) { ?>
                 <a class="btn btn-sm btn-outline-dark <?= $disabled_or_not_for_next; ?>"
@@ -165,8 +165,9 @@ $max_pages = ceil($total_rows / $results_per_page );
 		?>
     </p>
 	<?php } else {
-        echo "Няма намерени резултати.";
-    } ?>
+        echo "No matching results were found.";
+	}
+    ?>
 </div>
 
 <?php
