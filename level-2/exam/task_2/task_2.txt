@@ -1,0 +1,40 @@
+1. Изведете имената и приходите на двата филма с най-високи приходи излезли
+на екран след .2000 година.
+
+SELECT production_name, income
+FROM `productions`
+WHERE year > 2000
+AND date_deleted IS NULL
+ORDER BY income DESC
+LIMIT 2
+
+2. Изведете информация за филмите – име на продукцията, режисьор, жанр и
+държава. Резултатът и трябва да е подреден по азбучен ред на името на
+режисьора от а към я.
+
+SELECT p.production_name, d.director_name, g.genre_name, c.country_name
+FROM `productions` AS p
+JOIN directors AS d ON d.director_id = p.director_id
+JOIN genres AS g ON g.genre_id = p.genre_id
+JOIN countries AS c ON c.id = p.country_id
+WHERE p.date_deleted IS NULL
+ORDER BY d.director_name ASC
+
+3. Изведете броя на продадените билети от филмите на Стивън Спилбърг
+
+SELECT SUM(p.tickets_sold) as tickets_sold_from_stieven_spielberg_movies
+FROM `productions` AS p
+JOIN directors AS d ON d.director_id = p.director_id
+WHERE d.director_name like 'Stieven Spielberg'
+AND p.date_deleted IS NULL
+
+4. Изведете категорията филми с най-много произведени филми.
+
+SELECT COUNT(*) AS count_of_productions_in_the_category_with_most_films,
+				   g.genre_name as genre_name_with_most_films
+FROM `productions` AS p
+JOIN genres AS g ON g.genre_id = p.genre_id
+WHERE p.date_deleted IS NULL
+GROUP BY g.genre_name
+ORDER BY count_of_productions_in_the_category_with_most_films DESC
+LIMIT 1
