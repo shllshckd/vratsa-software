@@ -38,3 +38,12 @@ WHERE p.date_deleted IS NULL
 GROUP BY g.genre_name
 ORDER BY count_of_productions_in_the_category_with_most_films DESC
 LIMIT 1
+
+-- 4. should have been like that
+SELECT g.genre_name
+FROM `productions` AS p
+JOIN genres AS g ON g.genre_id = p.genre_id
+WHERE p.date_deleted IS NULL
+GROUP BY g.genre_name
+ORDER BY COUNT(*) DESC
+LIMIT 1
