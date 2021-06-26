@@ -1,0 +1,5 @@
+File > Preferences > Settings > Extensions
+
+ESLint: Options > Edit in settings.json
+
+node v14.16.1

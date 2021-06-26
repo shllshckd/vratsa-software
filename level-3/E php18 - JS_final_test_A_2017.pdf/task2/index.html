@@ -1,0 +1,32 @@
+<!-- 2.	Разполагате с index.html, в който има един div с 
+    id = ‘wrapper’. Като използвате JS функциите за манипулация на DOM и принципите за създаване и добавяне на нови елементи, 
+    добавете в този div меню съставено от 42 li, във всяко от тях има по един a - елемент,
+    с href и текст, указващ накъде води съответния линк. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="wrapper"></div>	
+
+    <script>
+        let wrapper = document.getElementById('wrapper');
+        let liCount = 40;
+        let ul = document.createElement('ul');
+        wrapper.appendChild(ul);
+
+        for (let i = 0; i < liCount; i++) {
+            let li = document.createElement('li');
+
+            let a = document.createElement('a');
+            a.setAttribute('href', 'https://google.com');
+            a.innerHTML = "google.com";
+
+            li.appendChild(a);
+            ul.appendChild(li);
+        }
+    </script>
+</body>
+</html>

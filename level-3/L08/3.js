@@ -1,0 +1,22 @@
+let el1 = document.getElementsByTagName('html');
+let el2 = document.getElementsByTagName('head');
+let el3 = document.getElementsByTagName('title');
+let el4 = document.getElementsByTagName('meta');
+let el5 = document.getElementsByTagName('script');
+let el6 = document.getElementsByTagName('h1');
+let el7 = document.getElementsByTagName('h2');
+let el8 = document.getElementsByTagName('p');
+let el9 = document.getElementsByTagName('body');
+let el10 = document.getElementsByTagName('div');
+let el11 = document.getElementsByTagName('form');
+let el12 = document.getElementsByTagName('span');
+let el13 = document.getElementsByTagName('section');
+let el14 = document.getElementsByTagName('li');
+let el15 = document.getElementsByTagName('ul');
+let el16 = document.getElementsByTagName('footer');
+let el17 = document.getElementsByTagName('br');
+let el18 = document.getElementsByTagName('img');
+let el19 = document.getElementsByTagName('a');
+let el20 = document.getElementsByTagName('link');
+
+console.log(elN.length);

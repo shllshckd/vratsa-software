@@ -1,0 +1,22 @@
+{
+    "eslint.options": {
+        "envs": [
+            "es6",
+            "browser",
+            "node"
+        ],
+        "parserOptions": {
+            "ecmaVersion": 2018,
+            "sourceType": "module",
+            "ecmaFeatures": {
+                "jsx": true
+            }
+        }, 
+        "rules": {
+            "semi": "error",
+            "curly": "error",
+            "quotes": ["warn", "single"],
+            "no-undef": "error"
+        }
+    }
+}

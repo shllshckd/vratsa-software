@@ -1,0 +1,22 @@
+/* .red {
+    background-color: red;
+}  
+
+.green {
+    background-color: green;
+} */
+
+.blue {
+    color:white;
+    background-color: blue;
+}
+
+.yellow {
+    color: blue;
+    background-color: yellow;
+}
+
+body {
+    font-size: larger;
+    background-color:rgb(24, 105, 97);
+}

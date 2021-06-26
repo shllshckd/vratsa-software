@@ -1,0 +1,17 @@
+.content {
+    display: none;
+}
+
+.red {
+    color: red;
+}
+
+.yellow {
+    color: blue;
+    background-color: yellow;
+}
+
+body {
+    font-size: larger;
+    background-color:rgb(135, 179, 174);
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+        var input = '3 4 9 2 3 5 7 8 1 6'
+        var size = parseInt(input[0])
+        var nums = [] 
+        var row = []
+        var key = 1
+        var isMagic = true;
+
+		for (var i = 1; i < input.length; i++) {
+			if(input[i] !== ' '){
+				row.push(parseInt(input[i]))
+				if(key < size){	
+					key++
+				}else{
+					nums.push(row)
+					key = 1
+					row = []
+				}
+			}
+		}   
+		console.log(nums)
+		
+		var furstSum = 0
+		var rowSum = 0 
+		var colSum = 0
+		var furstDiagonal = 0
+
+		for (var r = 0; r < nums.length; r++) {
+			rowSum = 0
+			colSum = 0
+			for (var c = 0; c < nums[r].length; c++) {
+				if(r == 0){
+					furstSum += nums[r][c]
+				}else{
+					rowSum += nums[r][c]
+				}
+				colSum += nums[c][r]
+			
+				if(r === c){
+					furstDiagonal =+ nums[r][c]
+				}
+			}
+			
+			if(r !== 0 && furstSum !== rowSum){
+				isMagic = false
+				break;
+			}
+
+			if(furstSum !== colSum){
+				isMagic = false
+				break;
+			}
+			
+		}
+console.log(furstDiagonal)
+	if(furstSum !== furstDiagonal){
+		isMagic = false			
+	}
+
+
+
+	if(isMagic){
+		console.log('the square is magic' )
+	}else{
+		console.log('the square is NOT magic' )
+		
+	}
+	</script>
+</body>
+</html>

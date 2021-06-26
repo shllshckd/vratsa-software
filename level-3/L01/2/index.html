@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Правоъгълник</title>
+</head>
+<body>
+<h1>Правоъгълник</h1>
+<hr>
+    <label for="width">Ширина</label>
+    <input type="number" id="width" name="width">
+    <br>
+    <label for="height">Височина</label>
+    <input type="number" id="height" name="width">
+    <br>
+    <input type="button" id="btn" value="Изчисли">
+    <script>
+        document.getElementById("btn").addEventListener("click", () => {
+            let result = calculate();
+            alert("Лицето е: " + result);
+            console.log("Лицето е: " + result);
+        });
+
+        calculate = () => {
+            let width = document.getElementById("width").value;
+            let height = document.getElementById("height").value;
+            return parseInt(width) * parseInt(height);
+        }
+    </script>
+</body>
+</html>

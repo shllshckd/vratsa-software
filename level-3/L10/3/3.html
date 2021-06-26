@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 3</title>
+    <link rel="stylesheet" href="./3.css">
+</head>
+<body>
+    Желаете ли фактура? 
+    <input type="checkbox" class="checkbox">
+    <div class="content">
+        <hr>
+        Име на фирмата:
+        <input type="text" name="firm_name" id="firm_name_input">
+        <div id="firm_name_error" class="red" hidden>
+            Името на фирмата не може да е празно.
+        </div>
+        <hr>
+        Адрес на коренспонденция:
+        <input type="text" name="address" id="address_input">
+        <div id="address_error" class="red" hidden>
+            Адресът на коренспонденция не може да е празен.
+        </div>
+        <hr>
+        Телефон:
+        <input type="text" name="phone" id="phone_input">
+        <div id="phone_error" class="red" hidden>Телефонът не може да е празен.</div>
+    </div>
+    <hr>
+    <input type="submit" value="Изпрати" class="button" id="submit">
+    <script src="3.js"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Квадрат</title>
+</head>
+<body>
+<h1>Квадрат</h1>
+<hr>
+    <label for="side">Страна</label>
+    <input type="number" id="side" name="side">
+    <br>
+    <input type="button" id="button" value="Изчисли">
+    <script>
+        document.getElementById("button").addEventListener("click", () => {
+            let result = calculate();
+            alert("Лицето е: " + result);
+            console.log("Лицето е: " + result);
+        });
+
+        calculate = () => {
+            let side = document.getElementById("side").value;
+            return parseInt(side) ** 2;
+        }
+    </script>
+</body>
+</html>
