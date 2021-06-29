@@ -8,3 +8,7 @@ start 3 A at 18:39
 finish at 19:40
 
 finish 1 at 19:50
+
+next day
+----------
+start B-2 19:12 ..

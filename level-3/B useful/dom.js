@@ -30,6 +30,28 @@ let elements = document.getElementsByClassName('clear'); // --select all with cl
 
 let elements = document.querySelectorAll('p,li,div,span,a,ul,form,input');
 
+let selectedEl = document.getElementById('first-div');
+selectedEl.addEventListener('mouseover', function () { console.log(); });
+
+let selectedEl = document.getElementById('first-div');
+selectedEl.addEventListener('mouseover', function() {
+    document.querySelector('img').setAttribute('src', 'imgs/hi.jpg');
+    let pEl = document.querySelector('p');
+    pEl.innerText = 'asd';
+})		
+
+let selectedEl = document.getElementById('first-div');
+selectedEl.onmouseover = function divIsHovered() {
+    document.querySelector('img').setAttribute('src', 'imgs/hi.jpg');
+    let pEl = document.querySelector('p');
+    pEl.innerText = 'asd';
+}
+
+outer.addEventListener('click', onceHandler, once);
+function onceHandler(event) {
+    alert('outer, once');
+}
+
 window.onload = (e) => { console.log('dsa'); }
 
 // returning a single element
