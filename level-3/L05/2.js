@@ -5,7 +5,6 @@ function solve(arr) {
     arr.forEach(element => {
         if (!met.includes(element)) {
             known[element] = 1;
-
         }
 
         if (met.includes(element)) {

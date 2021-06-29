@@ -10,8 +10,6 @@
 // 0, [1, 2, 5, 3, 4]  only one neighbor
 
 function solve(num, arr) {
-    let numberToCheck = arr[num];
-
     if (num > arr.length - 1 || num < 0) {
         console.log('invalid index');
     } 

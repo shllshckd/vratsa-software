@@ -30,6 +30,16 @@ let elements = document.getElementsByClassName('clear'); // --select all with cl
 
 let elements = document.querySelectorAll('p,li,div,span,a,ul,form,input');
 
-window.onload = (e) => {
-    console.log('dsa');    
-}
+window.onload = (e) => { console.log('dsa'); }
+
+// returning a single element
+// ---------------------------
+getElementById()
+querySelector('selector')
+
+// returning a collection of elements
+// ----------------------------------
+getElementsByTagName('tag name')
+getElementsByName('name')
+getElementsByClassName('className')
+querySelectorAll('selector')

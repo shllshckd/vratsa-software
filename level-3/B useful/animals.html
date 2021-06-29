@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li class="animals">Слон</li>
+        <li class="animals">Лъв</li>
+        <li class="birds">Щъркел</li>
+        <li class="animals">Тигър</li>
+        <li class="birds">Орел</li>
+    </ul>
+
+    <label for="color">Моля, изберете цвят</label>
+    <input type="color" name="color" id="color" value="">
+
+    <br>    
+    
+    <label for="color">Моля, изберете животни или птици</label>
+    <select name="" id="">
+        <option value="animals">Животни</option>
+        <option value="birds">Птици</option>
+    </select>
+
+    <br>    
+
+    <input type="submit" id="submit" value="Submit"> 
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
+    <script>
+        let color = document.getElementById('color');
+        let classSelected = document.getElementsByTagName("select")[0];
+        let birds = document.getElementsByClassName("birds");
+        let animals = document.getElementsByClassName("animals");
+        let submit = document.getElementById('submit');
+
+        submit.addEventListener("click" , setValue);
+
+        function setValue(e) {
+            console.log(color.value);
+            console.log(classSelected.value);
+
+            if(classSelected.value === "birds") {
+                for (let i = 0; i < birds.length; i++) {
+                    birds[i].setAttribute('style', 'color:' + color.value);
+                }
+            }
+            else if (classSelected.value === "animals") {
+                for (let i = 0; i < animals.length; i++) {
+                    animals[i].setAttribute('style', 'color:' + color.value);
+                }
+            }
+        }
+
+    </script>
+</body>
+</html>
