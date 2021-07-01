@@ -1,9 +1,0 @@
-start 13:00
-https://github.com/VratsaSoftware/php18/blob/master/03_JS/11_test_prep/JS_final_test_A_2017.pdf
-
-- task 1 is finished at 13:19
-- task 2 is done at 13:27
-- task 3 A is done at 14:14
-
-task 3 B start 15:14, end at 15:40
-task 3 C is not done
