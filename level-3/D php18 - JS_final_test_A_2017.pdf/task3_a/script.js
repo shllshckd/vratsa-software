@@ -6,20 +6,19 @@ $('#btn').on('click', function(e) {
 
     let password = $('#pd');
     let name = $('#name');
-    let pTags = $('p');
 
     let nameError = name.val() === '';
     let passwordError = password.val() === '' || password.val().length < 6;
     
     if (nameError && !nameNotified) {
-        pTags.eq(0).append(' Name mustn\'t be empty.');
-        pTags.eq(0).css({ color: 'red' });
+        name.parents().eq(0).append(' Name mustn\'t be empty.');
+        name.parents().eq(0).css({ color: 'red' });
         nameNotified = true;
     } 
 
     if (passwordError && !passwordNotified) {
-        pTags.eq(1).append(' Password mustn\'t be empty or shorter than 6 symbols.');
-        pTags.eq(1).css('color', 'red');
+        password.parent().eq(0).append(' Password mustn\'t be empty or shorter than 6 symbols.');
+        password.parent().eq(0).css('color', 'red');
         passwordNotified = true;
     } 
 

@@ -18,12 +18,11 @@
         wrapper.appendChild(ul);
 
         for (let i = 0; i < liCount; i++) {
-            let li = document.createElement('li');
-
             let a = document.createElement('a');
             a.setAttribute('href', 'https://google.com');
-            a.innerHTML = "google.com";
+            a.innerText = "google.com";
 
+            let li = document.createElement('li');
             li.appendChild(a);
             ul.appendChild(li);
         }

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li class="animals">Слон</li>
+        <li class="animals">Лъв</li>
+        <li class="birds">Щъркел</li>
+        <li class="animals">Тигър</li>
+        <li class="birds">Орел</li>
+    </ul>
+
+    <label for="color">Моля, изберете цвят</label>
+    <input type="color" name="color" id="color" value="">
+    <br>    
+    
+    <label for="color">Моля, изберете животни или птици</label>
+    <select name="" id="creature">
+        <option value="animals">Животни</option>
+        <option value="birds">Птици</option>
+    </select>
+    <br>    
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
+    <script>
+        $('#creature').on('change', function (e) {
+            $('li').css('color', 'black');
+
+            let color = $('#color').val();
+            let selectedOption = $('select option:selected').val();
+
+            $('.' + selectedOption).css('color', color);
+        })
+    </script>
+</body>
+</html>

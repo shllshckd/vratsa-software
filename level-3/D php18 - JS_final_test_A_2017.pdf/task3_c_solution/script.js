@@ -1,10 +1,12 @@
 $('#btn').on('click', function (e) {
-	e.preventDefault();
+	$('#success-msg').remove();
 	$('.error').remove();
 
+	e.preventDefault();
+
+	let form = $('form');
 	let username = $('#name').val();
-	let	password = $('#pd').val();
-	let flag = true;
+	let password = $('#pd').val();
 
 	$.ajax({
 		url: './file.php',
@@ -12,23 +14,24 @@ $('#btn').on('click', function (e) {
 		data: 'username=' + username + '&password=' + password,
 		dataType: 'json',
 		success: function (response) {
+			console.log(response);
 			if (response.success) {
-				alert('Success!');
-			} else {
+				form.prepend("<h1 id='success-msg'>Success!</h1>");
+				// alert('Success!');
+			} 
+			else {
 				if (response.error) {
-					console.log(response.error)
-					let error = response.error
+					console.log(response.error);
+					let error = response.error;
 
-					for (let ind in error) {
-						console.log(ind)
-						$('#' + ind)
-							.before('<p class="error">' + error[ind] + '</p>');
+					for (let index in error) {
+						$('#' + index).before('<p class="error">' + error[index] + '</p>');
 					}
 				}
 			}
 		},
 		error: function (xhr, ajaxOptions, thrownError) {
-			// console.log( thrownError )             
+			console.log(thrownError)
 		}
 	});
 })

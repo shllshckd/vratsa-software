@@ -9,8 +9,8 @@ if (strlen(trim($_POST['password'])) < 6) {
 	$response['error']['pd'] = 'Password at least 6 characters long!';
 }
 
-if (isset($response['error'])) {
+if (!isset($response['error'])) {
 	$response['success'] = 'Success!';
 }
 
-echo json_encode($error);
+echo json_encode($response);
