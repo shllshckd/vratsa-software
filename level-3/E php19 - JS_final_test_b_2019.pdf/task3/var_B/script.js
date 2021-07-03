@@ -1,6 +1,9 @@
 $('#btn').on('click', function(e) {
     e.preventDefault();
 
+    $('.error').remove();
+	$('.success').remove();
+
     let city = $('#city');
     let cityCode = $('#city-code');
     let streetName = $('#street-name');
@@ -17,20 +20,20 @@ $('#btn').on('click', function(e) {
 
     let notValidCity = city.val().toString().length < 3 || containsNumbers;
     if (notValidCity) {
-        pTags.eq(0).append(' Invalid city, no numbers are allowed and minimum length is 3')
-        pTags.eq(0).addClass('error');
+        let errorMessgage = $('<p></p>').addClass('error').text('Invalid city, no numbers are allowed and minimum length is 3.');
+        pTags.eq(0).append(errorMessgage);
     }
 
     let notValidCode = cityCode.val().toString().length == 0;
     if (notValidCode) {
-        pTags.eq(1).append(' Invalid city code, mustn\'t be empty')
-        pTags.eq(1).addClass('error');
+        let errorMessgage = $('<p></p>').addClass('error').text('Invalid city code, mustn\'t be empty.');
+        pTags.eq(1).append(errorMessgage);
     }
 
     let notValidStreetName =  streetName.val().toString().length == 0;
     if (notValidStreetName) {
-        pTags.eq(2).append(' Invalid street name, mustn\'t be empty')
-        pTags.eq(2).addClass('error');
+        let errorMessgage = $('<p></p>').addClass('error').text('Invalid street name, mustn\'t be empty.');
+        pTags.eq(2).append(errorMessgage)
     }
 
     let containsNumbersOnly = true;
@@ -42,14 +45,14 @@ $('#btn').on('click', function(e) {
 
     let notValidStreetNum = streetNum.val().toString().length > 0 && !containsNumbersOnly;
     if (notValidStreetNum) {
-        pTags.eq(2).append(' Invalid street number, should contain numbers only')
-        pTags.eq(2).addClass('error');
+        let errorMessgage = $('<p></p>').addClass('error').text('Invalid street number, should contain numbers only.');
+        pTags.eq(2).append(errorMessgage);
     }
 
     if (!notValidCity && !notValidCode && !notValidStreetName && !notValidStreetNum) {
-        body.prepend('<h1>Успешно записани данни!</h1>')
+        let successMessgage = $('<h1></h1>').addClass('success').text('Успешно записани данни!');
+        body.prepend(successMessgage);
     }
-
 });
 
 function isNumber(n) { 

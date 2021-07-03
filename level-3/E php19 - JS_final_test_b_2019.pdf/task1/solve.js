@@ -7,26 +7,20 @@ function solve(arr) {
     }
 
     let errorsCount = 0;
-
     arr.forEach(element => {
-        let numberElement = +element;
-
-        if (isNaN(numberElement)) {
-            errorsCount++;
-        }
-
-        if (typeof element == "boolean") {
+        let numberElement = Number(element);
+        if (isNaN(numberElement) || typeof element == "boolean") {
             errorsCount++;
         }
     });
 
     // if any errors, we do not care about the valid cases, return
-    if (errorsCount != 0) {
+    if (errorsCount > 0) {
         return onlyNumbersError;
     }
 
-    let increasingCounts = 0;
     // let currentScore = 0;
+    let increasingCounts = 0;
 
     arr.forEach((value, index) => {
         if (value >= arr[index - 1]) {

@@ -4,47 +4,28 @@
 	<meta charset="UTF-8">
 	<title>Task03</title>
 	<style type="text/css">
-		#container{
+		#container {
 			width: 95%;
 			margin: 0 auto;
 		}
+
 		img {
 			margin: 3px;
 		}
 	</style>
 </head>
 <body>
-<div id="container">
-	<img src="img/city.jpg" alt="city" width="150">
-	<img src="img/flowers.jpg" alt="flowers" width="150">
-	<img src="img/horse.jpg" alt="horse" width="150">
-	<img src="img/lawn.jpg" alt="lawn" width="150">
-	<img src="img/men.jpg" alt="men" width="150">
-	<img src="img/pizza.jpg" alt="pizza" width="150">
-	<img src="img/sea.jpg" alt="sea" width="150">
-	<img src="img/tree.jpg" alt="tree" width="150">
-</div>
-	<script src="jquery.min.js"></script>
-	<script>
-		let container = $('#container');
-		let images = $('#container img');
-		let imageSize = '';
-
-		images.hover(function(){
-			let currentImage = $(this);
-			images.hide();
-			let heading = $('<h1></h1>').text(currentImage.eq(0).attr('src').split('/')[1].split('.')[0]);
-			heading.css({ 'background-color': 'black', 'color' : 'white', 'font-size' : '20px' });
-			container.prepend(heading);
-			currentImage.show();
-			currentImage.css({ 'width': '800px' });
-		}, function() {
-			$('#container h1').remove();
-			let currentImage = $(this);
-			currentImage.css({ 'width': '150px' });
-			images.show();
-		})
-	</script>
+	<div id="container">
+		<img src="img/city.jpg" alt="city" width="150">
+		<img src="img/flowers.jpg" alt="flowers" width="150">
+		<img src="img/horse.jpg" alt="horse" width="150">
+		<img src="img/lawn.jpg" alt="lawn" width="150">
+		<img src="img/men.jpg" alt="men" width="150">
+		<img src="img/pizza.jpg" alt="pizza" width="150">
+		<img src="img/sea.jpg" alt="sea" width="150">
+		<img src="img/tree.jpg" alt="tree" width="150">
+	</div>
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<script type="text/javascript" src="./solution.js"></script>
 </body>
 </html>
-
