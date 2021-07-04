@@ -6,15 +6,16 @@ for (let i = 0; i < divsCount; i++) {
     let heading = document.createElement('h1');
 
     let random = Math.random();
-    heading.innerText = random;
-    heading.setAttribute('id', random);
+    let randomNumber = random.toString().split('.')[1];
+
+    heading.innerText = randomNumber;
+    heading.setAttribute('id', randomNumber);
 
     div.appendChild(heading);
 
     let p = document.createElement('p');
     let img = document.createElement('img');
 
-    let randomNumber = random.toString().split('.')[1];
     img.setAttribute('src', `img/${randomNumber}.png`);
     img.setAttribute('alt', `${randomNumber}`);
 
